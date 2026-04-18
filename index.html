@@ -1,16 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-	<meta charset="utf-8">
-	<title>images of the beyond</title>
-	<meta name="description" content="설명">
-	<meta name="keywords" content="키워드1, 키워드2">
-	<link rel="stylesheet" href="style.css">
-	<meta name="viewport" content="width=device-width, user-scalable=no">
-	<link rel="icon" type="image/png" href="">
-	<meta property="og:image" content="">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Images of the Beyond</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="sentence">
+    <p>
+      The following metadata components are established to track formal transformations and the conceptual transitions of meaning
+    </p>
+    <button class="era-btn" type="button">ERA</button>
+  </div>
 
+  <div class="top-nav">
+    <div class="about-wrap">
+      <button id="aboutToggle" class="nav-item" type="button">ABOUT</button>
+      <div id="aboutPanel" class="about-panel">
+        <p>
+          Gallup의 종교·가치관 조사에 따르면, 오늘날 사람들에게는 제도 종교에 대한 소속감과 참여가 점차 약화되는 경향이 나타난다. 종교적 정체성과 공동 제도에 대한 신념, 그리고 사회·사상적 같은 종교적 관계에 대한 믿음 역시 장기적으로 감소하는 흐름을 보이고 있다. 그럼에도 초월적 존재에 대한 상상과 이미지는 완전히 사라지지 않고, 종교의 제도적 맥락을 벗어나 다양한 문화적 형태 속에서 지속적으로 재등장하고 있다. 이러한 현상은 시각 문화에서도 발견된다. 특정 방식이나 이미지가 단지 이상 종교적 교리나 신앙의 맥락에만 머물지 않고, 형상, 장면, 대중문화 등 여러 영역에서 반복적으로 등장하며 소비되는 시각적 아카이브로 기능하고 있다. 그러나 오늘날 소비되는 천사의 이미지는 본래, 천사 속에서 천사의 형상은 특정한 종교적·사회적 맥락 속에서 제작되고 사용되어 왔다. 천사는 선형의 조각과 극적 장치, 제단화와 성화, 기념비와 묘지 조각 등 다양한 매체와 구조 안에서 나타났으며, 시대와 장소에 따라 서로 다른 의미와 역할을 부여받았다. 이 프로젝트는 천사의 형상이 역사 속에서 어떠한 형태로 제작되고 사용되어 왔는지를 조사한다. 조각, 회화, 기념비, 건축 장식 등 다양한 매체에 등장한 천사의 이미지를 수집하고, 제작 년도·매체·시기·기능 등의 메타데이터를 통해 천사의 형식적 변화와 사회문화적 의미 이동을 분석하고자 한다.
+        </p>
+      </div>
+    </div>
+
+    <button class="nav-item" type="button">MAP</button>
+  </div>
+
+  <main class="scene" id="scene">
+    <div class="world" id="world">
+      <svg class="orbit-svg" viewBox="0 0 1800 1200" preserveAspectRatio="xMidYMid meet">
+        <ellipse class="orbit-path" cx="900" cy="600" rx="70" ry="560" />
+        <ellipse class="orbit-path" cx="900" cy="600" rx="120" ry="700"
+           transform="rotate(22 900 600)" />
+        <ellipse class="orbit-path" cx="900" cy="600" rx="170" ry="820"
+           transform="rotate(38 900 600)" />  <!-- 4. 더 더 눕기 -->
+        <ellipse class="orbit-path" cx="900" cy="600" rx="220" ry="930"
+           transform="rotate(54 900 600)" />
+        <ellipse class="orbit-path" cx="900" cy="600" rx="280" ry="1040"
+           transform="rotate(68 900 600)" />  <!-- 6. 완전 수평 -->
+        <ellipse class="orbit-path" cx="900" cy="600" rx="1060" ry="120" />
+      </svg>
+
+      <div class="items-layer" id="itemsLayer"></div>
+    </div>
+
+    <div class="site-title-wrap">
+      <h1 class="site-title">Images of the Beyond</h1>
+      <button class="plus-btn" type="button">+</button>
+    </div>
+  </main>
+
+<script> //ABOUT 자바스크립트 
+const aboutToggle = document.getElementById('aboutToggle');
+const aboutPanel = document.getElementById('aboutPanel');
+
+if (aboutToggle && aboutPanel) {
+  aboutToggle.addEventListener('click', () => {
+    aboutPanel.classList.toggle('open');
+  });
+}
+
+const orbitSvg = document.getElementById("orbitSvg");
+
+const cx = 900;
+const cy = 600;
+const rx = 820;
+const ry = 170;
+const angles = [-40, -28, -16, -4, 8, 20, 32, 44, 86];
+
+angles.forEach(angle => {
+  const el = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+  el.setAttribute("class", "orbit-path");
+  el.setAttribute("cx", cx);
+  el.setAttribute("cy", cy);
+  el.setAttribute("rx", rx);
+  el.setAttribute("ry", ry);
+  el.setAttribute("transform", `rotate(${angle} ${cx} ${cy})`);
+  orbitSvg.appendChild(el);
+});
+
+</script>
 </body>
 </html>
