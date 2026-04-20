@@ -1,250 +1,193 @@
 :root {
   --bg: #ffffff;
   --text: #000000;
-  --line: rgba(30, 30, 30, 0.55);
-  --panel-bg: rgba(239, 239, 236, 0.9);
+  --zoom: 1;
+  --rotateX: 15deg;
+  --rotateY: 0deg;
+  --side-margin: 40px;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: var(--bg);
-  color: var(--text);
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { 
+  width: 100%; height: 100%; overflow: hidden; 
+  background: var(--bg); color: var(--text);
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
-button {
-  font: inherit;
-  background: none;
-  border: none;
+.sentence { 
+  position: fixed; top: 20px; left: var(--side-margin); 
+  z-index: 1000; font-size: 12px; pointer-events: none; 
+}
+
+.top-nav { 
+  position: fixed; top: 20px; right: var(--side-margin); 
+  width: clamp(280px, 30vw, 450px); z-index: 1000; 
+  display: flex; justify-content: space-between; align-items: center; font-size: 12px; 
+}
+
+.nav-item { cursor: pointer; user-select: none; }
+
+.about-overlay {
+  position: fixed; top: 55px; right: var(--side-margin); 
+  width: clamp(280px, 30vw, 450px); max-height: 80vh;
+  z-index: 1000; display: none; overflow-y: auto; background: var(--bg); 
+}
+
+.about-content {
+  font-size: 11px; line-height: 1.8; text-align: justify; word-break: keep-all;
+}
+
+.site-footer {
+  position: fixed; right: var(--side-margin); bottom: 25px; 
+  width: clamp(280px, 30vw, 450px); z-index: 1000; pointer-events: none;
+}
+
+.site-title { font-family: Georgia, serif; font-size: 28px; font-weight: normal; }
+
+.controls { 
+  position: fixed; right: var(--side-margin); top: 50%;
+  transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 1000;
+}
+
+.controls button {
+  width: 24px; height: 24px; border: 1px solid #000; background: var(--bg);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+
+.controls button:hover { background: #000; color: #fff; }
+
+
+.era-container {
+  position: fixed;
+  top: 45px; /* 문장(top 20px) 바로 아래 */
+  left: var(--side-margin);
+  z-index: 1100;
+}
+
+.era-label {
+  font-size: 12px;
   cursor: pointer;
-  color: inherit;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-decoration: underline;
+  user-select: none;
 }
 
-.sentence {
-  position: fixed;
-  top: 20px;
-  left: 40px;
-  z-index: 30;
-  font-size: 10px;
-  line-height: 1.45;
-  letter-spacing: -0.01em;
-  white-space: nowrap;     /* 🔥 줄바꿈 방지 핵심 */
-}
-
-.era-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.55);
-  padding: 4px 8px;
-  margin-top: 18px;
-  font-size: 11px;
-  line-height: 1;
-}
-
-.top-nav {
-  position: fixed;
-  top: 20px;
-  right: 64px;
-  z-index: 40;
-
-  display: flex;
-  justify-content: space-between;  /* 🔥 핵심 */
-  align-items: flex-start;
-
-  width: 420px; /* 👈 기준 박스 */
-}
-
-.nav-item {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  position: relative;
-}
-
-.about-wrap {
-  display: flex;
+.era-list {
+  list-style: none;
+  display: none; /* 클릭 전까지 숨김 */
   flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  max-width: 420px;
+  gap: 4px;
 }
 
-.about-panel {
-  width: 420px;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.35s ease;
-  font-size: 10px;
-  line-height: 1.7;
-  background: transparent;
-  word-break: keep-all;
+.era-list li {
+  font-size: 11px;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
 }
 
-.about-panel.open {
-  max-height: 500px;
+.era-list li:hover, .era-list li.active {
   opacity: 1;
-  margin-top: 10px;
 }
-
 
 .scene {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  perspective: 1400px;
-  perspective-origin: center center;
+  position: relative; width: 100vw; height: 100vh;
+  perspective: 2000px; cursor: grab;
+  display: flex; align-items: center; justify-content: center;
 }
+.scene:active { cursor: grabbing; }
 
 .world {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(95vw, 1600px);
-  aspect-ratio: 3 / 2;
-  height: auto;
-  transform: translate(-50%, -50%);
+  width: 80vmin; height: 80vmin;
+  transform-style: preserve-3d;
+  /* 핵심: 변수 적용 */
+  transform: scale(var(--zoom)) rotateX(var(--rotateX)) rotateY(var(--rotateY));
+  /* pointer-events: none을 제거하거나 하위 요소에서 다시 auto로 설정해야 함 */
+  pointer-events: none; 
 }
 
-.orbit-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+.orbit-layer { 
+  position: absolute; 
+  inset: 0; 
+  transform-style: preserve-3d; 
   pointer-events: none;
+  transition: filter 0.8s ease, opacity 0.8s ease;
 }
 
-.orbit-path {
-  fill: none;
-  stroke: #111;
-  stroke-width: 1.2;
-  stroke-dasharray: 1.5 5;
-  stroke-linecap: round;
-  opacity: 0.9;
-  vector-effect: non-scaling-stroke;
+.world.focus-mode .orbit-layer {
+  filter: blur(8px);
+  opacity: 0.1;
+  pointer-events: none; /* 블러된 레이어는 클릭 방지 */
 }
 
-.items-layer {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
+.world.focus-mode .orbit-layer.highlight {
+  filter: blur(0px);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 500; /* 선택된 레이어를 앞으로 끌어올림 */
 }
 
-.orbit-item {
-  position: absolute;
-  width: 88px;
-  height: 110px;
-  transform-style: preserve-3d;
-  will-change: transform;
+.orbit-content {
+  position: absolute; inset: 0; transform-style: preserve-3d;
+  animation: spin linear infinite;
+}
+
+/* 애니메이션 설정 */
+#layer1 .orbit-content, #layer1 .orbit-item img { animation-duration: 85s; }
+#layer2 .orbit-content, #layer2 .orbit-item img { animation-duration: 70s; }
+#layer3 .orbit-content, #layer3 .orbit-item img { animation-duration: 70s; }
+#layer4 .orbit-content, #layer4 .orbit-item img { animation-duration: 75s; }
+#layer5 .orbit-content, #layer5 .orbit-item img { animation-duration: 80s; }
+#layer6 .orbit-content, #layer6 .orbit-item img { animation-duration: 75s; }
+
+@keyframes spin { from { transform: rotateZ(0deg); } to { transform: rotateZ(360deg); } }
+@keyframes reverse-spin { from { transform: rotateZ(0deg); } to { transform: rotateZ(-360deg); } }
+
+.orbit-svg { width: 100%; height: 100%; overflow: visible; }
+
+.orbit-path { 
+  fill: none; 
+  stroke: #000; 
+  stroke-width: 0.4px;
+  stroke-dasharray: 1.2; /* 1px 선, 4px 공백 - 훨씬 섬세해 보입니다 */
+  opacity: 0.7; /* 점선이 너무 진하면 이미지가 죽을 수 있으니 약간 낮춰보세요 */
+}
+
+#layer1 { transform: rotateY(0deg); }
+#layer2 { transform: rotateY(72deg); }
+#layer3 { transform: rotateY(144deg); }
+#layer4 { transform: rotateY(216deg); }
+#layer5 { transform: rotateY(288deg); }
+#layer6 { transform: rotateX(90deg); }
+
+
+.orbit-item { 
+  position: absolute; 
+  width: 45px; 
+  transform-style: preserve-3d; 
+  left: var(--x); top: var(--y); 
+  /* translate 뒤에 rotateX(var(--rx, 0deg))를 추가합니다 */
+  transform: translate(-50%, -50%) rotateX(var(--rx, 0deg)); 
   pointer-events: auto;
 }
 
-.orbit-item img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  background: #ddd;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-  user-select: none;
-  -webkit-user-drag: none;
+.orbit-item img { 
+  width: 100%; height: auto; 
+  animation: reverse-spin linear infinite;
+  user-select: none; -webkit-user-drag: none;
 }
 
-.site-title-wrap {
-  position: fixed;
-  right: 64px;
-  bottom: 20px;
-  width: 420px;
-  display: flex;
-  align-items: center;
+#layer6 .orbit-item {
+  transform: translate(-50%, -50%) rotateX(var(--rx)) !important;
+  transform-style: preserve-3d;
 }
 
-
-.site-title {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-  text-align: left;
-}
-
-.plus-btn {
-  position: absolute;
-  right: 0;
-}
-
-@media (max-width: 1200px) {
-  .fixed-copy {
-    max-width: 440px;
-  }
-
-  .about-panel {
-    width: 320px;
-  }
-
-  .world {
-    width: 1500px;
-    height: 1000px;
-  }
-}
-
-@media (max-width: 820px) {
-  .fixed-copy {
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    max-width: none;
-  }
-
-  .top-nav {
-    top: 28px;
-    right: 64px;
-    gap: 18px;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-.about-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  width: 420px;
-}
-
-  .about-panel {
-    width: min(320px, 78vw);
-  }
-
-  .site-title-wrap {
-    right: 20px;
-    bottom: 20px;
-    gap: 14px;
-  }
-
-  .plus-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 24px;
-  }
-
-  .orbit-item {
-    width: 64px;
-    height: 80px;
-  }
+/* 3. 이미지 설정 */
+#layer6 .orbit-item img {
+  animation: none !important; /* 수평 회전 시 이미지가 굴러가지 않게 방지 */
+  transform: none !important;
+  backface-visibility: visible !important;
 }

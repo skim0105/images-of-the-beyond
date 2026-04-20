@@ -1,61 +1,225 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Images of the Beyond</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="sentence">
-    <p>
-      The following metadata components are established to track formal transformations and the conceptual transitions of meaning
-    </p>
-    <button class="era-btn" type="button">ERA</button>
+
+  <div class="sentence">The following metadata components are established to track formal transformations and the conceptual transitions of meaning</div>
+  
+  <nav class="top-nav">
+    <div class="nav-item" id="aboutBtn">ABOUT</div>
+    <div class="nav-item">MAP</div>
+  </nav>
+
+  <div class="controls">
+    <button id="zoomIn">+</button>
+    <button id="zoomOut">-</button>
   </div>
 
-  <div class="top-nav">
-    <div class="about-wrap">
-      <button id="aboutToggle" class="nav-item" type="button">ABOUT</button>
-      <div id="aboutPanel" class="about-panel">
-        <p>
-          Gallup의 종교·가치관 조사에 따르면, 오늘날 사람들에게는 제도 종교에 대한 소속감과 참여가 점차 약화되는 경향이 나타난다. 종교적 정체성과 공동 제도에 대한 신념, 그리고 사회·사상적 같은 종교적 관계에 대한 믿음 역시 장기적으로 감소하는 흐름을 보이고 있다. 그럼에도 초월적 존재에 대한 상상과 이미지는 완전히 사라지지 않고, 종교의 제도적 맥락을 벗어나 다양한 문화적 형태 속에서 지속적으로 재등장하고 있다. 이러한 현상은 시각 문화에서도 발견된다. 특정 방식이나 이미지가 단지 이상 종교적 교리나 신앙의 맥락에만 머물지 않고, 형상, 장면, 대중문화 등 여러 영역에서 반복적으로 등장하며 소비되는 시각적 아카이브로 기능하고 있다. 그러나 오늘날 소비되는 천사의 이미지는 본래, 천사 속에서 천사의 형상은 특정한 종교적·사회적 맥락 속에서 제작되고 사용되어 왔다. 천사는 선형의 조각과 극적 장치, 제단화와 성화, 기념비와 묘지 조각 등 다양한 매체와 구조 안에서 나타났으며, 시대와 장소에 따라 서로 다른 의미와 역할을 부여받았다. 이 프로젝트는 천사의 형상이 역사 속에서 어떠한 형태로 제작되고 사용되어 왔는지를 조사한다. 조각, 회화, 기념비, 건축 장식 등 다양한 매체에 등장한 천사의 이미지를 수집하고, 제작 년도·매체·시기·기능 등의 메타데이터를 통해 천사의 형식적 변화와 사회문화적 의미 이동을 분석하고자 한다.
-        </p>
-      </div>
-    </div>
-
-    <button class="nav-item" type="button">MAP</button>
+  <div class="era-container">
+    <div class="era-label" id="eraMenuBtn">ERA</div>
+    <ul class="era-list" id="eraList">
+      <li data-target="all" class="active">ALL</li>
+      <li data-target="layer1">ANCIENT</li>
+      <li data-target="layer3">EARLY MEDIEVAL</li>
+      <li data-target="layer5">ROMANESQUE</li>
+      <li data-target="layer2">GOTHIC MEDIEVAL</li>
+      <li data-target="layer4">RENAISSANCE</li>
+      <li data-target="layer6">MODERN</li>
+    </ul>
   </div>
 
   <main class="scene" id="scene">
     <div class="world" id="world">
-      <svg class="orbit-svg" viewBox="0 0 1800 1200" preserveAspectRatio="xMidYMid meet">
-        <ellipse class="orbit-path" cx="900" cy="600" rx="70" ry="560" />
-        <ellipse class="orbit-path" cx="900" cy="600" rx="120" ry="700" transform="rotate(18 900 600)" />
-        <ellipse class="orbit-path" cx="900" cy="600" rx="170" ry="820" transform="rotate(32 900 600)" />
-        <ellipse class="orbit-path" cx="900" cy="600" rx="220" ry="930" transform="rotate(46 900 600)" />
-        <ellipse class="orbit-path" cx="900" cy="600" rx="280" ry="1040" transform="rotate(60 900 600)" />
-        <ellipse class="orbit-path" cx="900" cy="600" rx="1060" ry="120" />
-      </svg>
+      
+      <div class="orbit-layer" id="layer1">
+        <div class="orbit-content">
+          <svg class="orbit-svg" viewBox="0 0 1000 1000">
+            <ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" />
+          </svg>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="ancient/ancient1.jpg" alt="Ancient 1"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="ancient/ancient2.jpg" alt="Ancient 2"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="ancient/ancient3.jpg" alt="Ancient 3"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="ancient/ancient4.jpg" alt="Ancient 4"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="ancient/ancient5.jpg" alt="Ancient 5"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="ancient/ancient6.jpg" alt="Ancient 6"></div>
+        </div>
+      </div>
 
-      <div class="items-layer" id="itemsLayer"></div>
-    </div>
+      <div class="orbit-layer" id="layer2">
+        <div class="orbit-content">
+          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="gothic/gothic1.jpg" alt="Gothic 1"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="gothic/gothic2.jpg" alt="Gothic 2"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="gothic/gothic3.jpg" alt="Gothic 3"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="gothic/gothic4.jpg" alt="Gothic 4"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="gothic/gothic5.jpg" alt="Gothic 5"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="gothic/gothic6.jpg" alt="Gothic 6"></div>
+        </div>
+      </div>
 
-    <div class="site-title-wrap">
-      <h1 class="site-title">Images of the Beyond</h1>
-      <button class="plus-btn" type="button">+</button>
+      <div class="orbit-layer" id="layer3">
+        <div class="orbit-content">
+          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="early/early1.jpg" alt="Early 1"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="early/early2.jpg" alt="Early 2"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="early/early3.jpg" alt="Early 3"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="early/early4.jpg" alt="Early 4"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="early/early5.jpg" alt="Early 5"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="early/early6.jpg" alt="Early 6"></div>
+        </div>
+      </div>
+
+      <div class="orbit-layer" id="layer4">
+        <div class="orbit-content">
+          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="renaissance/renaissance1.jpg" alt="1"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="renaissance/renaissance2.jpg" alt="2"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="renaissance/renaissance3.jpg" alt="3"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="renaissance/renaissance4.jpg" alt="4"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="renaissance/renaissance5.jpg" alt="5"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="renaissance/renaissance6.jpg" alt="6"></div>
+        </div>
+      </div>
+
+      <div class="orbit-layer" id="layer5">
+        <div class="orbit-content"> 
+          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="romanesque/romanesque1.jpg" alt="Romanesque 1"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="romanesque/romanesque2.jpg" alt="Romanesque 2"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="romanesque/romanesque3.jpg" alt="Romanesque 3"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="romanesque/romanesque4.jpg" alt="Romanesque 4"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="romanesque/romanesque5.jpg" alt="Romanesque 5"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="romanesque/romanesque6.jpg" alt="Romanesque 6"></div>
+        </div>
+      </div>
+
+      <div class="orbit-layer" id="layer6">
+        <div class="orbit-content">
+          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="modern/modern1.jpg" alt="1"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="modern/modern2.jpg" alt="2"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="modern/modern3.jpg" alt="3"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="modern/modern4.jpg" alt="4"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="modern/modern5.jpg" alt="5"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="modern/modern6.jpg" alt="6"></div>
+        </div>
+      </div>
+
     </div>
   </main>
 
-<script>
-const aboutToggle = document.getElementById('aboutToggle');
-const aboutPanel = document.getElementById('aboutPanel');
+  <footer class="site-footer">
+    <h1 class="site-title">Images of the Beyond</h1>
+  </footer>
 
-if (aboutToggle && aboutPanel) {
-  aboutToggle.addEventListener('click', () => {
-    aboutPanel.classList.toggle('open');
-  });
-}
-</script>
+  <div id="aboutOverlay" class="about-overlay">
+    <div class="about-content">
+      <p>Gallup의 종교·가치관 조사에 따르면, 오늘날 사회에서는 제도 종교에 대한 소속감과 참여가 점차 약화되는 경향이 나타난다. 종교적 정체성과 종교 제도에 대한 신뢰, 그리고 신·천사·천국과 같은 종교적 존재에 대한 믿음 역시 장기적으로 감소하는 흐름을 보이고 있다. 그럼에도 초월적 존재에 대한 상상과 이미지는 완전히 사라지지 않고, 종교의 제도적 맥락을 벗어나 다양한 문화적 형태 속에서 지속적으로 재유통되고 있다. 이러한 현상은 시각 문화에서도 발견된다. 특히 ‘천사’의 이미지는 더 이상 종교적 교리나 신앙의 맥락에만 머무르지 않고, 패션, 장식, 오브제, 대중문화 등 여러 영역에서 반복적으로 등장하며 소비되는 시각적 아이콘으로 기능하고 있다. 그러나 오늘날 소비되는 천사의 이미지와 달리, 역사 속에서 천사의 형상은 특정한 종교적·사회적 맥락 속에서 제작되고 사용되어 왔다. 천사는 성당의 조각과 건축 장식, 제단화와 성화, 기념비와 묘지 조각 등 다양한 매체와 구조 안에서 나타났으며, 시대와 장소에 따라 서로 다른 의미와 역할을 부여받았다. 이 프로젝트는 천사의 형상이 역사 속에서 어떠한 형태로 제작되고 사용되어 왔는지를 조사한다. 조각, 회화, 기념비, 건축 장식 등 다양한 매체에 등장한 천사의 이미지를 수집하고, 시대·지역·매체·기능 등의 메타데이터를 통해 천사의 형식적 변화와 사회문화적 의미의 이동을 분석하고자 한다.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.documentElement;
+      const scene = document.getElementById('scene');
+      const aboutBtn = document.getElementById('aboutBtn');
+      const aboutOverlay = document.getElementById('aboutOverlay');
+      const zoomInBtn = document.getElementById('zoomIn');
+      const zoomOutBtn = document.getElementById('zoomOut');
+
+      // ERA 관련 변수 추가
+      const eraMenuBtn = document.getElementById('eraMenuBtn');
+      const eraList = document.getElementById('eraList');
+      const eraItems = document.querySelectorAll('.era-list li');
+      const world = document.getElementById('world');
+      const layers = document.querySelectorAll('.orbit-layer');
+
+      let zoom = 1;
+      let rotateX = 15;
+      let rotateY = 0;
+      let isDragging = false;
+      let prevX, prevY;
+
+      function update3D() {
+        zoom = Math.min(Math.max(zoom, 0.4), 3.5);
+        root.style.setProperty('--zoom', zoom);
+        root.style.setProperty('--rotateX', `${rotateX}deg`);
+        root.style.setProperty('--rotateY', `${rotateY}deg`);
+      }
+
+      // About 토글
+      aboutBtn.addEventListener('click', () => {
+        const isVisible = aboutOverlay.style.display === 'block';
+        aboutOverlay.style.display = isVisible ? 'none' : 'block';
+      });
+
+      // ERA 메뉴 토글
+      eraMenuBtn.addEventListener('click', () => {
+        eraList.style.display = (eraList.style.display === 'flex') ? 'none' : 'flex';
+      });
+
+      // 시대별 필터링 기능
+      eraItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const targetId = item.getAttribute('data-target');
+
+          // 메뉴 활성화 상태 업데이트
+          eraItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+
+          if (targetId === 'all') {
+            world.classList.remove('focus-mode');
+            layers.forEach(l => l.classList.remove('highlight'));
+          } else {
+            world.classList.add('focus-mode');
+            layers.forEach(l => {
+              if (l.id === targetId) {
+                l.classList.add('highlight');
+              } else {
+                l.classList.remove('highlight');
+              }
+            });
+          }
+        });
+      });
+
+      // 줌 컨트롤
+      zoomInBtn.addEventListener('click', (e) => { e.stopPropagation(); zoom += 0.2; update3D(); });
+      zoomOutBtn.addEventListener('click', (e) => { e.stopPropagation(); zoom -= 0.2; update3D(); });
+
+      // 드래그 로직
+      scene.addEventListener('pointerdown', (e) => {
+        if (e.target.closest('.controls') || e.target.closest('.top-nav') || e.target.closest('.about-overlay') || e.target.closest('.era-container')) return;
+        isDragging = true;
+        prevX = e.clientX;
+        prevY = e.clientY;
+      });
+      
+      window.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const deltaX = e.clientX - prevX;
+        const deltaY = e.clientY - prevY;
+        rotateY += deltaX * 0.25;
+        rotateX -= deltaY * 0.25;
+        update3D();
+        prevX = e.clientX;
+        prevY = e.clientY;
+      });
+      
+      window.addEventListener('pointerup', () => { isDragging = false; });
+      
+      window.addEventListener('wheel', (e) => { 
+        if(e.target.closest('.about-overlay')) return;
+        zoom += e.deltaY * -0.001; 
+        update3D(); 
+      }, { passive: true });
+
+      update3D();
+    });
+  </script>
 </body>
 </html>
