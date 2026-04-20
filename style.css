@@ -14,7 +14,7 @@ html, body {
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
-/* 상단 왼쪽 문장 */
+/* UI 레이아웃 */
 .sentence { 
   position: fixed; 
   top: 18px; 
@@ -22,184 +22,105 @@ html, body {
   z-index: 1000; 
   font-size: 8px; 
   pointer-events: none; 
+  letter-spacing: 0.5px;
 }
 
-/* 상단 오른쪽 네비게이션 */
 .top-nav { 
-  position: fixed;
+  position: fixed; 
   top: 18px; 
   right: var(--side-margin); 
-  width: clamp(250px, 35vw, 450px); 
-  z-index: 1000; 
+  width: clamp(250px, 35vw, 450px);
+  z-index: 2000; 
   display: flex; 
   justify-content: space-between; 
   align-items: center; 
   font-size: 8px; 
 }
-
 .nav-item { cursor: pointer; user-select: none; }
 
-/* ABOUT 오버레이: 시작점 정렬을 위해 width 고정 */
-.about-overlay {
+.about-overlay { 
   position: fixed; 
   top: 45px; 
   right: var(--side-margin); 
   width: clamp(250px, 35vw, 450px); 
-  max-height: 80vh;
+  max-height: 80vh; 
   z-index: 1000; 
   display: none; 
   overflow-y: auto; 
-  background: var(--bg); 
 }
 
-.about-content {
+.about-content { 
   font-size: 8px; 
   line-height: 1.6; 
-  text-align: justify; /* 본문은 양끝 정렬 */
-  word-break: keep-all;
+  text-align: justify; 
+  word-break: keep-all; 
+  background: none; /* 배경 제거 */
+  color: #000;
 }
 
-/* 하단 사이트 타이틀: About 시작점과 맞추기 */
-.site-footer {
-  position: fixed; 
-  right: var(--side-margin); 
-  bottom: 25px; 
-  /* About 오버레이와 동일한 가로폭 부여 */
-  width: clamp(250px, 35vw, 450px); 
-  z-index: 1000; 
-  pointer-events: none;
-  /* About 본문의 시작점(왼쪽)과 맞추기 위해 왼쪽 정렬로 변경 */
-  text-align: left; 
-}
-
-.site-title { 
-  font-family: Georgia, serif; 
-  font-size: 20px; 
-  font-weight: normal; 
-  margin: 0;
-  display: inline-block;
-}
-
-/* 오른쪽 줌 컨트롤 */
 .controls { 
   position: fixed; 
   right: var(--side-margin); 
-  top: 50%;
+  top: 50%; 
   transform: translateY(-50%); 
   display: flex; 
   flex-direction: column; 
   gap: 10px; 
-  z-index: 1000;
+  z-index: 1000; 
 }
-
-.controls button {
+.controls button { 
   width: 24px; 
   height: 24px; 
   border: 0.5px solid #000; 
-  background: var(--bg);
+  background: var(--bg); 
   cursor: pointer; 
   display: flex; 
   align-items: center; 
   justify-content: center;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.controls button:hover {
+  background: #000;
+  color: #fff;
 }
 
-.controls button:hover { background: #000; color: #fff; }
+.era-container { position: fixed; top: 45px; left: calc(var(--side-margin) + 50px); z-index: 1100; }
+.era-label { font-size: 8px; cursor: pointer; margin-bottom: 8px; user-select: none; }
+.era-list { list-style: none; display: none; flex-direction: column; gap: 4px; }
+.era-list li { font-size: 8px; cursor: pointer; opacity: 0.4; transition: opacity 0.3s ease; white-space: nowrap; }
+.era-list li:hover, .era-list li.active { opacity: 1; }
 
-/* ERA 카테고리 */
-.era-container {
-  position: fixed;
-  top: 45px;
-  left: calc(var(--side-margin) + 50px); 
-  z-index: 1100;
-}
-
-.era-label {
-  font-size: 8px;
-  cursor: pointer;
-  margin-bottom: 8px;  
-  user-select: none;
-}
-
-.era-list {
-  list-style: none;
-  display: none; 
-  flex-direction: column;
-  gap: 4px;
-}
-
-.era-list li {
-  font-size: 8px;
-  cursor: pointer;
-  opacity: 0.4;
-  transition: opacity 0.3s ease;
-  white-space: nowrap;
-}
-
-.era-list li:hover, .era-list li.active {
-  opacity: 1;
-}
-
-/* 3D 씬 및 월드 설정 (기존과 동일) */
-.scene {
-  position: relative; width: 100vw; height: 100vh;
-  perspective: 2000px; cursor: grab;
-  display: flex; align-items: center; justify-content: center;
-}
+/* 3D 씬 설정 */
+.scene { position: relative; width: 100vw; height: 100vh; perspective: 2000px; cursor: grab; display: flex; align-items: center; justify-content: center; }
 .scene:active { cursor: grabbing; }
 
 .world {
-  position: absolute;
-  width: 80vmin; height: 80vmin;
+  position: absolute; width: 80vmin; height: 80vmin;
   transform-style: preserve-3d;
   transform: scale(var(--zoom)) rotateX(var(--rotateX)) rotateY(var(--rotateY));
-  pointer-events: none; 
-}
-
-.orbit-layer { 
-  position: absolute; 
-  inset: 0; 
-  transform-style: preserve-3d; 
   pointer-events: none;
-  transition: filter 0.8s ease, opacity 0.8s ease;
 }
 
-.world.focus-mode .orbit-layer {
-  filter: blur(4px);
-  opacity: 0.12;
-  pointer-events: none; 
-}
+.orbit-layer { position: absolute; inset: 0; transform-style: preserve-3d; pointer-events: none; transition: filter 0.8s ease, opacity 0.8s ease; }
+.world.focus-mode .orbit-layer { filter: blur(4px); opacity: 0.12; }
+.world.focus-mode .orbit-layer.highlight { filter: blur(0px); opacity: 1; }
 
-.world.focus-mode .orbit-layer.highlight {
-  filter: blur(0px);
-  opacity: 1;
-  pointer-events: auto;
-  z-index: 500; 
-}
+.orbit-content { position: absolute; inset: 0; transform-style: preserve-3d; animation: spin linear infinite; }
 
-.orbit-content {
-  position: absolute; inset: 0; transform-style: preserve-3d;
-  animation: spin linear infinite;
-}
-
-/* 레이어 애니메이션 (기존과 동일) */
-#layer1 .orbit-content, #layer1 .orbit-item img { animation-duration: 85s; }
-#layer2 .orbit-content, #layer2 .orbit-item img { animation-duration: 70s; }
-#layer3 .orbit-content, #layer3 .orbit-item img { animation-duration: 70s; }
-#layer4 .orbit-content, #layer4 .orbit-item img { animation-duration: 75s; }
-#layer5 .orbit-content, #layer5 .orbit-item img { animation-duration: 80s; }
-#layer6 .orbit-content, #layer6 .orbit-item img { animation-duration: 75s; }
+/* 레이어별 회전 속도 */
+#layer1 .orbit-content, #layer1 .orbit-item img { animation-duration: 100s; }
+#layer2 .orbit-content, #layer2 .orbit-item img { animation-duration: 95s; }
+#layer3 .orbit-content, #layer3 .orbit-item img { animation-duration: 110s; }
+#layer4 .orbit-content, #layer4 .orbit-item img { animation-duration: 105s; }
+#layer5 .orbit-content, #layer5 .orbit-item img { animation-duration: 95s; }
+#layer6 .orbit-content, #layer6 .orbit-item img { animation-duration: 110s; }
 
 @keyframes spin { from { transform: rotateZ(0deg); } to { transform: rotateZ(360deg); } }
 @keyframes reverse-spin { from { transform: rotateZ(0deg); } to { transform: rotateZ(-360deg); } }
 
 .orbit-svg { width: 100%; height: 100%; overflow: visible; }
-.orbit-path { 
-  fill: none; 
-  stroke: #000; 
-  stroke-width: 0.4px;
-  stroke-dasharray: 1.2; 
-  opacity: 0.7; 
-}
+.orbit-path { fill: none; stroke: #000; stroke-width: 0.4px; stroke-dasharray: 1.2; opacity: 0.3; }
 
 #layer1 { transform: rotateY(0deg); }
 #layer2 { transform: rotateY(72deg); }
@@ -209,27 +130,294 @@ html, body {
 #layer6 { transform: rotateX(90deg); }
 
 .orbit-item { 
-  position: absolute; 
-  width: 45px; 
+  position: absolute; width: 45px; 
   transform-style: preserve-3d; 
   left: var(--x); top: var(--y); 
-  transform: translate(-50%, -50%) rotateX(var(--rx, 0deg)); 
-  pointer-events: auto;
+  transform: translate(-50%, -50%); 
+  pointer-events: auto !important; 
+  cursor: pointer;
+  z-index: 100;
 }
 
 .orbit-item img { 
   width: 100%; height: auto; 
   animation: reverse-spin linear infinite;
-  user-select: none; -webkit-user-drag: none;
+  user-select: none; 
 }
 
-#layer6 .orbit-item {
-  transform: translate(-50%, -50%) rotateX(var(--rx)) !important;
-  transform-style: preserve-3d;
+/* [최종] 우측 하단 화이트 정보 창 */
+.side-panel {
+  position: fixed;
+  right: 50px; 
+  bottom: 50px;
+  width: 260px;
+  background: #ffffff;
+  color: #000000;
+  padding: 25px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  opacity: 0;
+  border: 0.5px solid #000000; 
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.08);
+  transform: translateY(20px);
+  transition: all 0.3s ease-out;
 }
 
-#layer6 .orbit-item img {
-  animation: none !important; 
-  transform: none !important;
-  backface-visibility: visible !important;
+
+
+.side-panel.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.index-num { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 9px; 
+  letter-spacing: 2px; 
+  margin-bottom: 4px; 
+  opacity: 0.5; 
+}
+
+.popup-title { 
+  font-size: 19px; 
+  font-weight: 700; 
+  margin: 5px 0; 
+  line-height: 1.2; 
+  word-break: keep-all; 
+}
+
+.popup-concept {
+  font-size: 10px; 
+  color: #666; 
+  margin-bottom: 15px; 
+  text-transform: uppercase; 
+}
+
+.popup-divider { 
+  width: 100%; 
+  height: 0.5px; 
+  background: #000; 
+  margin-bottom: 20px; 
+  opacity: 0.2; 
+  position: relative; 
+}
+
+.popup-divider::after { content: ''; 
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  width: 30px; 
+  height: 1px; 
+  background: #000; 
+}
+
+.detail-item { margin-bottom: 12px; }
+.detail-label {
+   font-size: 8px; 
+   color: #999; 
+   text-transform: uppercase; 
+   margin-bottom: 2px; 
+  }
+
+.detail-value { 
+  font-size: 12px; 
+  color: #000; 
+  line-height: 1.4; 
+}
+
+.highlight-value { 
+  font-weight: 700; 
+}
+
+/* 업로드 모달 및 스캔 애니메이션 */
+.modal { 
+  display: none; 
+  position: fixed; 
+  z-index: 5000; 
+  left: 0; 
+  top: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: rgba(255, 255, 255, 0.9); 
+  backdrop-filter: blur(5px); 
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px; 
+    padding: 70px 30px 40px; /* 상단 패딩 늘림 */
+    background: #fff; border: 0.5px solid #000;
+    display: flex; flex-direction: column; align-items: center;
+}
+
+.modal-title {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;      /* 자간을 넓혀 가독성 확보 */
+    text-align: center;
+    margin-bottom: 70px; /* 드롭박스와의 확실한 간격 */
+    width: 100%;
+    text-transform: uppercase;
+}
+
+
+.close-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 20px; cursor: pointer;
+    display: block !important;
+}
+
+#drop-area {
+  width: 100%;
+  height: auto;           /* 높이를 고정하지 않고 이미지에 맞춤 */
+  min-height: 200px;      /* 최소 높이만 유지 */
+  margin-bottom: 5px;     /* 사진과 텍스트 사이 간격 대폭 축소 */
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  transition: background 0.5s ease;
+}
+
+#drop-area.is-scanning {
+  background: #050505; 
+  transition: background 0.8s ease;
+}
+
+#drop-text {
+  font-size: 8px;           /* 더 작게 조정 */
+  letter-spacing: 1px;      /* 자간을 넓혀 가독성 확보 */
+  color: #999;              /* 약간 흐리게 처리하여 메인 요소 방해 금지 */
+  text-transform: uppercase;
+  text-align: center;
+  pointer-events: none;     /* 텍스트가 클릭을 방해하지 않도록 설정 */
+}
+
+
+#drop-area:hover {
+  background: #f9f9f9;      /* 호버 시 살짝 반응 */
+}
+
+
+#preview-img { 
+  max-width: 100%; 
+  max-height: 100%; 
+  object-fit: contain; 
+  display: block;
+  margin: 0 auto;
+  transition: filter 0.5s ease, opacity 0.5s ease;
+}
+
+#preview-img.x-ray-active {
+  /* 이미지를 반전시키지 않고, 밝게 띄우면서 푸른 기운만 살짝 줍니다 */
+  filter: brightness(1.5) contrast(1.2) drop-shadow(0 0 15px rgba(0, 255, 255, 0.5));
+  opacity: 0.9;
+  transform: scale(1.02); /* 스캔 시 아주 미세하게 커지는 효과 */
+  transition: all 0.8s ease;
+}
+
+#status-text { 
+  font-size: 8px; 
+  text-transform: uppercase; 
+  letter-spacing: 1px;      /* 자간을 넓혀 가독성 확보 */
+}
+
+
+.scan-result-container {
+    width: 100%;
+    margin-top: 5px;          /* 사진과의 간격 최소화 */
+    padding-top: 15px;
+    text-align: center;       /* 모든 자식 텍스트 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scan-result-header {
+    font-size: 7.5px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: #616161;
+    margin-bottom: 25px;       /* 간격 미세 조정 */
+}
+
+.scan-result-title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.2;         /* 타이틀은 행간을 줄여 밀도감 형성 */
+    margin-bottom: 5px;
+}
+
+.scan-result-concept {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.scan-result-reason {
+    font-size: 9px;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+    color: #444;
+    /* 가운데 정렬을 위해 왼쪽 라인 제거 및 패딩 조정 */
+    border-left: none; 
+    padding: 0 10px; 
+    margin-bottom: 25px;
+    word-break: keep-all;
+    max-width: 60%;           /* 텍스트가 너무 퍼지지 않게 폭 제한 */
+}
+
+.scan-close-guide {
+    font-size: 8px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    margin-top: 15px;
+}
+
+.is-scanning #scan-line { 
+  display: block; 
+  animation: scanAnimation 2.8s infinite ease-in-out; 
+}
+
+#scan-line { 
+  display: none; 
+  position: absolute; 
+  left: 0; 
+  width: 100%; 
+  height: 1px; /* 더 얇게 */
+  
+  /* 라인 자체는 흰색에 가까운 하늘색, 주변에 푸른 광풍 */
+  background: rgba(255, 245, 210, 0.8);
+  box-shadow: 
+    0 0 10px rgba(197, 249, 255, 0.8),
+    0 0 30px rgba(184, 219, 255, 0.4); 
+  z-index: 10; 
+}
+
+@keyframes xRayAnimation { 
+  0% { top: -10%; opacity: 0; } 
+  10%, 90% { opacity: 1; } 
+  100% { top: 110%; opacity: 0; } 
+}
+
+
+@keyframes scanAnimation { 
+  0% { top: 0%; opacity: 0; } 
+  30%, 70% { opacity: 1; } 
+  100% { top: 100%; opacity: 0; } 
 }
