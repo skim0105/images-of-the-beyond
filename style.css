@@ -15,8 +15,12 @@ html, body {
 }
 
 .sentence { 
-  position: fixed; top: 20px; left: var(--side-margin); 
-  z-index: 1000; font-size: 12px; pointer-events: none; 
+  position: fixed; 
+  top: 20px; 
+  left: var(--side-margin); 
+  z-index: 1000; 
+  font-size: 10px; 
+  pointer-events: none; 
 }
 
 .top-nav { 
