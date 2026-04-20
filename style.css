@@ -63,7 +63,7 @@ html, body {
 .site-footer {
   position: fixed; 
   right: var(--side-margin); 
-  bottom: 25px; 
+  bottom: 20px; 
   /* About 오버레이와 동일한 가로폭 부여 */
   width: clamp(250px, 35vw, 450px); 
   z-index: 1000; 
@@ -74,7 +74,7 @@ html, body {
 
 .site-title { 
   font-family: Georgia, serif; 
-  font-size: 24px; 
+  font-size: 20px; 
   font-weight: normal; 
   margin: 0;
   display: inline-block;
@@ -114,11 +114,10 @@ html, body {
 }
 
 .era-label {
-  font-size: 10px;
+  font-size: 8px;
   cursor: pointer;
   margin-bottom: 8px;  
   user-select: none;
-  text-decoration: underline;
 }
 
 .era-list {
@@ -129,7 +128,7 @@ html, body {
 }
 
 .era-list li {
-  font-size: 10px;
+  font-size: 8px;
   cursor: pointer;
   opacity: 0.4;
   transition: opacity 0.3s ease;
@@ -165,8 +164,8 @@ html, body {
 }
 
 .world.focus-mode .orbit-layer {
-  filter: blur(8px);
-  opacity: 0.1;
+  filter: blur(4px);
+  opacity: 0.12;
   pointer-events: none; 
 }
 
@@ -225,7 +224,6 @@ html, body {
 }
 
 #layer6 .orbit-item {
-  --rx: -90deg; 
   transform: translate(-50%, -50%) rotateX(var(--rx)) !important;
   transform-style: preserve-3d;
 }
