@@ -11,8 +11,13 @@
   
   <nav class="top-nav">
     <div class="nav-item" id="aboutBtn">ABOUT</div>
+    <div class="nav-item" id="uploadBtn">UPLOAD</div>
     <div class="nav-item">MAP</div>
   </nav>
+
+  <aside id="infoPanel" class="side-panel">
+    <div style="margin-top:auto; color:#444; font-size:11px;">HOVER OVER OBJECTS</div>
+  </aside>
 
   <div class="controls">
     <button id="zoomIn">+</button>
@@ -34,192 +39,313 @@
 
   <main class="scene" id="scene">
     <div class="world" id="world">
-      
       <div class="orbit-layer" id="layer1">
         <div class="orbit-content">
-          <svg class="orbit-svg" viewBox="0 0 1000 1000">
-            <ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" />
-          </svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="ancient/ancient1.jpg" alt="Ancient 1"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="ancient/ancient2.jpg" alt="Ancient 2"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="ancient/ancient3.jpg" alt="Ancient 3"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="ancient/ancient4.jpg" alt="Ancient 4"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="ancient/ancient5.jpg" alt="Ancient 5"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="ancient/ancient6.jpg" alt="Ancient 6"></div>
+          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;" data-name="Apkallu" data-date="883–859 B.C." data-loc="Iraq" data-mat="Gypsum alabaster" data-size="240cm"><img src="ancient/ancient1.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="ancient/ancient2.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="ancient/ancient3.jpg"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="ancient/ancient4.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="ancient/ancient5.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="ancient/ancient6.jpg"></div>
         </div>
       </div>
 
       <div class="orbit-layer" id="layer2">
         <div class="orbit-content">
           <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="gothic/gothic1.jpg" alt="Gothic 1"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="gothic/gothic2.jpg" alt="Gothic 2"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="gothic/gothic3.jpg" alt="Gothic 3"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="gothic/gothic4.jpg" alt="Gothic 4"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="gothic/gothic5.jpg" alt="Gothic 5"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="gothic/gothic6.jpg" alt="Gothic 6"></div>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="gothic/gothic1.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="gothic/gothic2.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="gothic/gothic3.jpg"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="gothic/gothic4.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="gothic/gothic5.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="gothic/gothic6.jpg"></div>
         </div>
       </div>
 
       <div class="orbit-layer" id="layer3">
         <div class="orbit-content">
           <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="early/early1.jpg" alt="Early 1"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="early/early2.jpg" alt="Early 2"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="early/early3.jpg" alt="Early 3"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="early/early4.jpg" alt="Early 4"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="early/early5.jpg" alt="Early 5"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="early/early6.jpg" alt="Early 6"></div>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="early/early1.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="early/early2.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="early/early3.jpg"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="early/early4.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="early/early5.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="early/early6.jpg"></div>
         </div>
       </div>
 
       <div class="orbit-layer" id="layer4">
         <div class="orbit-content">
           <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="renaissance/renaissance1.jpg" alt="1"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="renaissance/renaissance2.jpg" alt="2"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="renaissance/renaissance3.jpg" alt="3"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="renaissance/renaissance4.jpg" alt="4"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="renaissance/renaissance5.jpg" alt="5"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="renaissance/renaissance6.jpg" alt="6"></div>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="renaissance/renaissance1.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="renaissance/renaissance2.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="renaissance/renaissance3.jpg"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="renaissance/renaissance4.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="renaissance/renaissance5.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="renaissance/renaissance6.jpg"></div>
         </div>
       </div>
 
       <div class="orbit-layer" id="layer5">
-        <div class="orbit-content"> 
+        <div class="orbit-content">
           <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="romanesque/romanesque1.jpg" alt="Romanesque 1"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="romanesque/romanesque2.jpg" alt="Romanesque 2"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="romanesque/romanesque3.jpg" alt="Romanesque 3"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="romanesque/romanesque4.jpg" alt="Romanesque 4"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="romanesque/romanesque5.jpg" alt="Romanesque 5"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="romanesque/romanesque6.jpg" alt="Romanesque 6"></div>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="romanesque/romanesque1.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="romanesque/romanesque2.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="romanesque/romanesque3.jpg"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="romanesque/romanesque4.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="romanesque/romanesque5.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="romanesque/romanesque6.jpg"></div>
         </div>
       </div>
 
       <div class="orbit-layer" id="layer6">
         <div class="orbit-content">
           <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="modern/modern1.jpg" alt="1"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="modern/modern2.jpg" alt="2"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="modern/modern3.jpg" alt="3"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="modern/modern4.jpg" alt="4"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="modern/modern5.jpg" alt="5"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="modern/modern6.jpg" alt="6"></div>
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="modern/modern1.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="modern/modern2.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="modern/modern3.jpg"></div>
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="modern/modern4.jpg"></div>
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="modern/modern5.jpg"></div>
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="modern/modern6.jpg"></div>
         </div>
       </div>
-
     </div>
   </main>
 
-  <footer class="site-footer">
-    <h1 class="site-title">Images of the Beyond</h1>
-  </footer>
-
-  <div id="aboutOverlay" class="about-overlay">
+  <div id="aboutOverlay" class="about-overlay" style="display:none;">
     <div class="about-content">
       <p>Gallup의 종교·가치관 조사에 따르면, 오늘날 사회에서는 제도 종교에 대한 소속감과 참여가 점차 약화되는 경향이 나타난다. 종교적 정체성과 종교 제도에 대한 신뢰, 그리고 신·천사·천국과 같은 종교적 존재에 대한 믿음 역시 장기적으로 감소하는 흐름을 보이고 있다. 그럼에도 초월적 존재에 대한 상상과 이미지는 완전히 사라지지 않고, 종교의 제도적 맥락을 벗어나 다양한 문화적 형태 속에서 지속적으로 재유통되고 있다. 이러한 현상은 시각 문화에서도 발견된다. 특히 ‘천사’의 이미지는 더 이상 종교적 교리나 신앙의 맥락에만 머무르지 않고, 패션, 장식, 오브제, 대중문화 등 여러 영역에서 반복적으로 등장하며 소비되는 시각적 아이콘으로 기능하고 있다. 그러나 오늘날 소비되는 천사의 이미지와 달리, 역사 속에서 천사의 형상은 특정한 종교적·사회적 맥락 속에서 제작되고 사용되어 왔다. 천사는 성당의 조각과 건축 장식, 제단화와 성화, 기념비와 묘지 조각 등 다양한 매체와 구조 안에서 나타났으며, 시대와 장소에 따라 서로 다른 의미와 역할을 부여받았다. 이 프로젝트는 천사의 형상이 역사 속에서 어떠한 형태로 제작되고 사용되어 왔는지를 조사한다. 조각, 회화, 기념비, 건축 장식 등 다양한 매체에 등장한 천사의 이미지를 수집하고, 시대·지역·매체·기능 등의 메타데이터를 통해 천사의 형식적 변화와 사회문화적 의미의 이동을 분석하고자 한다.</p>
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const root = document.documentElement;
-      const scene = document.getElementById('scene');
-      const aboutBtn = document.getElementById('aboutBtn');
-      const aboutOverlay = document.getElementById('aboutOverlay');
-      const zoomInBtn = document.getElementById('zoomIn');
-      const zoomOutBtn = document.getElementById('zoomOut');
+  <div id="uploadModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3 class="modal-title">Angel Iconography Scanner</h3>
+      <div id="drop-area">
+        <p id="drop-text">Drop your image here or click to upload</p>
+        <input type="file" id="fileInput" accept="image/*" style="display:none">
+        <div id="scan-line"></div>
+        <img id="preview-img" src="" style="display:none">
+      </div>
+      <div id="status-text">Ready to scan...</div>
+    </div>
+  </div>
 
-      // ERA 관련 변수 추가
-      const eraMenuBtn = document.getElementById('eraMenuBtn');
-      const eraList = document.getElementById('eraList');
-      const eraItems = document.querySelectorAll('.era-list li');
-      const world = document.getElementById('world');
-      const layers = document.querySelectorAll('.orbit-layer');
+<script>
 
-      let zoom = 1;
-      let rotateX = 15;
-      let rotateY = 0;
-      let isDragging = false;
-      let prevX, prevY;
+document.addEventListener('DOMContentLoaded', () => {
+    const root = document.documentElement;
+    const world = document.getElementById('world');
+    const layers = document.querySelectorAll('.orbit-layer');
+    const scene = document.getElementById('scene');
+    const infoPanel = document.getElementById('infoPanel');
 
-      function update3D() {
-        zoom = Math.min(Math.max(zoom, 0.4), 3.5);
-        root.style.setProperty('--zoom', zoom);
-        root.style.setProperty('--rotateX', `${rotateX}deg`);
-        root.style.setProperty('--rotateY', `${rotateY}deg`);
-      }
+    // 1. UI 요소
+    const aboutBtn = document.getElementById('aboutBtn');
+    const aboutOverlay = document.getElementById('aboutOverlay');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const uploadModal = document.getElementById('uploadModal');
+    const closeModal = document.querySelector('.close-modal');
+    const eraMenuBtn = document.getElementById('eraMenuBtn');
+    const eraList = document.getElementById('eraList');
+    const zoomInBtn = document.getElementById('zoomIn');
+    const zoomOutBtn = document.getElementById('zoomOut');
 
-      // About 토글
-      aboutBtn.addEventListener('click', () => {
-        const isVisible = aboutOverlay.style.display === 'block';
-        aboutOverlay.style.display = isVisible ? 'none' : 'block';
-      });
+    const eraData = {
+      layer1: { name: "Ancient", concept: "Transcendental", reason: "비인간적 비례, 기하학적 형상, 압도적 크기 및 하이브리드된 도상이 고대 양식의 초월적 특성을 증명합니다." },
+      layer3: { name: "Early Medieval", concept: "Symbolic", reason: "평면성, 대칭적 구도, 정보의 아이콘화 및 선명한 윤곽선이 초기 중세의 상징적 도상학을 나타냅니다." },
+      layer5: { name: "Romanesque", concept: "Monolithic", reason: "묵직한 물성, 부동의 자세, 엄숙하고 투박한 표정이 로마네스크의 수호적 부도성을 보여줍니다." },
+      layer2: { name: "Gothic Medieval", concept: "Ethereal", reason: "유려한 곡선, 빛의 찬란함, 빛의 투과 효과 및 수직적 상승 구도가 고딕의 화려한 미학을 반영합니다." },
+      layer4: { name: "Renaissance", concept: "Humanistic", reason: "해부학적으로 완벽한 인체, 친근한 미소, 정서적 교감이 인본주의적 이상 세계를 형상화합니다." },
+      layer6: { name: "Modern", concept: "Deconstructed", reason: "심리적 투영과 형상의 해체, 파편화된 구도가 현대 예술의 해체주의적 관점을 드러냅니다." }
+    };
 
-      // ERA 메뉴 토글
-      eraMenuBtn.addEventListener('click', () => {
-        eraList.style.display = (eraList.style.display === 'flex') ? 'none' : 'flex';
-      });
+    // 2. 3D 상태 및 제어 (원본 유지)
+    let zoom = 1; let rotateX = 15; let rotateY = 0;
+    let isDragging = false; let prevX, prevY;
 
-      // 시대별 필터링 기능
-      eraItems.forEach(item => {
-        item.addEventListener('click', () => {
-          const targetId = item.getAttribute('data-target');
+    function update3D() {
+      zoom = Math.min(Math.max(zoom, 0.4), 3.5);
+      root.style.setProperty('--zoom', zoom);
+      root.style.setProperty('--rotateX', `${rotateX}deg`);
+      root.style.setProperty('--rotateY', `${rotateY}deg`);
+    }
 
-          // 메뉴 활성화 상태 업데이트
-          eraItems.forEach(i => i.classList.remove('active'));
-          item.classList.add('active');
+    if(zoomInBtn) zoomInBtn.onclick = () => { zoom += 0.2; update3D(); };
+    if(zoomOutBtn) zoomOutBtn.onclick = () => { zoom -= 0.2; update3D(); };
 
-          if (targetId === 'all') {
-            world.classList.remove('focus-mode');
-            layers.forEach(l => l.classList.remove('highlight'));
-          } else {
-            world.classList.add('focus-mode');
-            layers.forEach(l => {
-              if (l.id === targetId) {
-                l.classList.add('highlight');
-              } else {
-                l.classList.remove('highlight');
-              }
-            });
-          }
-        });
-      });
-
-      // 줌 컨트롤
-      zoomInBtn.addEventListener('click', (e) => { e.stopPropagation(); zoom += 0.2; update3D(); });
-      zoomOutBtn.addEventListener('click', (e) => { e.stopPropagation(); zoom -= 0.2; update3D(); });
-
-      // 드래그 로직
-      scene.addEventListener('pointerdown', (e) => {
-        if (e.target.closest('.controls') || e.target.closest('.top-nav') || e.target.closest('.about-overlay') || e.target.closest('.era-container')) return;
-        isDragging = true;
-        prevX = e.clientX;
-        prevY = e.clientY;
-      });
-      
-      window.addEventListener('pointermove', (e) => {
-        if (!isDragging) return;
-        const deltaX = e.clientX - prevX;
-        const deltaY = e.clientY - prevY;
-        rotateY += deltaX * 0.25;
-        rotateX -= deltaY * 0.25;
-        update3D();
-        prevX = e.clientX;
-        prevY = e.clientY;
-      });
-      
-      window.addEventListener('pointerup', () => { isDragging = false; });
-      
-      window.addEventListener('wheel', (e) => { 
-        if(e.target.closest('.about-overlay')) return;
-        zoom += e.deltaY * -0.001; 
-        update3D(); 
-      }, { passive: true });
-
-      update3D();
+    // 3. 인터랙션 (원본 유지)
+    aboutBtn.onclick = () => aboutOverlay.style.display = aboutOverlay.style.display === 'block' ? 'none' : 'block';
+    eraMenuBtn.onclick = () => eraList.style.display = eraList.style.display === 'flex' ? 'none' : 'flex';
+    
+    document.querySelectorAll('.era-list li').forEach(li => {
+      li.onclick = () => {
+        const target = li.getAttribute('data-target');
+        document.querySelectorAll('.era-list li').forEach(i => i.classList.remove('active'));
+        li.classList.add('active');
+        if(target === 'all') {
+          world.classList.remove('focus-mode');
+          layers.forEach(l => l.classList.remove('highlight'));
+        } else {
+          world.classList.add('focus-mode');
+          layers.forEach(l => l.classList.toggle('highlight', l.id === target));
+        }
+      };
     });
-  </script>
+
+    // 4. 정보 패널 (원본 유지)
+    function showInfo(item) {
+      const d = {
+        n: item.getAttribute('data-name') || "UNNAMED OBJECT",
+        dt: item.getAttribute('data-date') || "ERA DATA PENDING",
+        l: item.getAttribute('data-loc') || "N/A",
+        m: item.getAttribute('data-mat') || "N/A",
+        s: item.getAttribute('data-size') || "N/A"
+      };
+      infoPanel.innerHTML = `
+        <span class="index-num">DATA COMPONENT</span>
+        <h4 class="popup-title">${d.n.toUpperCase()}</h4>
+        <p class="popup-concept">${d.dt}</p>
+        <div class="popup-divider"></div>
+        <div class="detail-item"><span class="detail-label">Origin</span><span class="detail-value">${d.l}</span></div>
+        <div class="detail-item"><span class="detail-label">Material</span><span class="detail-value">${d.m}</span></div>
+        <div class="detail-item"><span class="detail-label">Scale</span><span class="detail-value highlight-value">${d.s}</span></div>
+      `;
+      infoPanel.classList.add('active');
+    }
+
+    function bindEvents(item) {
+      item.onmouseenter = () => showInfo(item);
+      item.onmouseleave = () => infoPanel.classList.remove('active');
+    }
+    document.querySelectorAll('.orbit-item').forEach(bindEvents);
+
+    // 5. 드래그/줌 제어 (핀치줌 대응 원본 유지)
+    scene.onpointerdown = (e) => {
+      if(e.target.closest('.controls, .top-nav, .side-panel, .modal, .about-overlay')) return;
+      isDragging = true; prevX = e.clientX; prevY = e.clientY;
+    };
+    window.onpointermove = (e) => {
+      if(!isDragging) return;
+      rotateY += (e.clientX - prevX) * 0.25; rotateX -= (e.clientY - prevY) * 0.25;
+      update3D(); prevX = e.clientX; prevY = e.clientY;
+    };
+    window.onpointerup = () => isDragging = false;
+    window.onwheel = (e) => {
+      if(!e.target.closest('.about-overlay, .modal-content')) {
+        const delta = e.ctrlKey ? -e.deltaY * 0.01 : e.deltaY * -0.001;
+        zoom += delta;
+        update3D();
+      }
+    };
+
+    // 6. 업로드 및 스캔 인터렉션
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('fileInput');
+    const statusText = document.getElementById('status-text');
+    const previewImg = document.getElementById('preview-img');
+
+    let pendingScanResult = null; 
+
+    uploadBtn.onclick = () => { uploadModal.style.display = "block"; };
+    
+    closeModal.onclick = () => {
+      if (pendingScanResult) {
+        addAngelToWorld(pendingScanResult.src, pendingScanResult.eraId, pendingScanResult.meta);
+        pendingScanResult = null;
+      }
+      uploadModal.style.display = "none";
+      resetModal();
+    };
+
+    dropArea.onclick = () => fileInput.click();
+    fileInput.onchange = (e) => handleFiles(e.target.files);
+
+    function handleFiles(files) {
+      if(!files[0]) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previewImg.src = e.target.result;
+        previewImg.style.display = "block";
+        document.getElementById('drop-text').style.display = "none";
+        startScan();
+      };
+      reader.readAsDataURL(files[0]);
+    }
+
+    async function startScan() {
+      dropArea.classList.add('is-scanning'); 
+      previewImg.classList.add('x-ray-active'); // 스캔 효과 활성화
+      
+      statusText.innerHTML = `<div style="font-size:8px; opacity:0.5; text-align:center; letter-spacing:1px;">X-RAY CAPTURING...</div>`;
+      
+      await new Promise(r => setTimeout(r, 4000)); 
+      
+      const eraKeys = Object.keys(eraData);
+      const randomEra = eraKeys[Math.floor(Math.random() * eraKeys.length)];
+      const meta = eraData[randomEra];
+
+      previewImg.classList.remove('x-ray-active'); // 효과 종료
+      
+      statusText.innerHTML = `
+        <div class="scan-result-container">
+          <div class="scan-result-header">SCAN COMPLETE: CLASSIFICATION</div>
+          <div class="scan-result-title">${meta.name.toUpperCase()}</div>
+          <div class="scan-result-concept">${meta.concept.toUpperCase()}</div>
+          <div class="scan-result-reason">${meta.reason}</div>
+          <div class="scan-close-guide">[ PRESS X TO INTEGRATE INTO THE ORBIT ]</div>
+        </div>
+      `;
+      
+      pendingScanResult = { src: previewImg.src, eraId: randomEra, meta: meta };
+      dropArea.classList.remove('is-scanning');
+    }
+
+    // [궤도 배치 수정] 이미지가 정중앙이 아닌 실제 궤도 라인 위에 뿌려지도록 함
+    function addAngelToWorld(src, eraId, meta) {
+      const orbit = document.querySelector(`#${eraId} .orbit-content`);
+      if(!orbit) return;
+      
+      const newItem = document.createElement('div');
+      newItem.className = 'orbit-item';
+
+      // 궤도 반지름(radius)을 45% 내외로 설정하여 궤도 경로(orbit-path)와 일치시킴
+      const angle = Math.random() * Math.PI * 2; 
+      const radius = 42 + Math.random() * 6; // 궤도 라인 주변으로 미세한 오차 부여
+      
+      const x = 50 + radius * Math.cos(angle);
+      const y = 50 + radius * Math.sin(angle);
+
+      newItem.style.setProperty('--x', `${x}%`);
+      newItem.style.setProperty('--y', `${y}%`);
+      
+      newItem.setAttribute('data-name', `SCAN: ${meta.name}`);
+      newItem.setAttribute('data-date', meta.concept);
+      newItem.setAttribute('data-loc', 'DIGITAL ARCHIVE');
+      newItem.setAttribute('data-mat', 'PIXEL DATA');
+      newItem.setAttribute('data-size', 'VARIABLE');
+      
+      const img = document.createElement('img');
+      img.src = src;
+      newItem.appendChild(img);
+      
+      bindEvents(newItem); 
+      orbit.appendChild(newItem);
+    }
+
+    function resetModal() {
+      dropArea.classList.remove('is-scanning');
+      previewImg.classList.remove('x-ray-active'); 
+      previewImg.style.display = "none";
+      document.getElementById('drop-text').style.display = "block";
+      statusText.innerHTML = "";
+      fileInput.value = "";
+    }
+
+    update3D();
+});
+</script>
 </body>
 </html>
