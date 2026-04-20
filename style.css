@@ -4,7 +4,7 @@
   --zoom: 1;
   --rotateX: 15deg;
   --rotateY: 0deg;
-  /* 마진을 40px에서 20px로 줄였습니다 */
+  /* 양옆 마진을 20px로 조정 */
   --side-margin: 20px; 
 }
 
@@ -15,6 +15,7 @@ html, body {
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
+/* 상단 왼쪽 문장 */
 .sentence { 
   position: fixed; 
   top: 20px; 
@@ -24,11 +25,11 @@ html, body {
   pointer-events: none; 
 }
 
+/* 상단 오른쪽 네비게이션 */
 .top-nav { 
   position: fixed;
   top: 20px; 
   right: var(--side-margin); 
-  /* 가로폭을 살짝 넓혀 텍스트 배치를 여유롭게 잡았습니다 */
   width: clamp(250px, 35vw, 450px); 
   z-index: 1000; 
   display: flex; 
@@ -58,6 +59,7 @@ html, body {
   word-break: keep-all;
 }
 
+/* 하단 사이트 타이틀 */
 .site-footer {
   position: fixed; 
   right: var(--side-margin); 
@@ -65,7 +67,6 @@ html, body {
   width: clamp(250px, 35vw, 450px); 
   z-index: 1000; 
   pointer-events: none;
-  /* 오른쪽 정렬 유지 */
   text-align: right; 
 }
 
@@ -75,6 +76,7 @@ html, body {
   font-weight: normal; 
 }
 
+/* 오른쪽 줌 컨트롤 */
 .controls { 
   position: fixed; 
   right: var(--side-margin); 
@@ -99,12 +101,12 @@ html, body {
 
 .controls button:hover { background: #000; color: #fff; }
 
+/* ERA 카테고리: 왼쪽 마진에서 50px 더 이동 */
 .era-container {
   position: fixed;
   top: 45px;
-  left: var(--side-margin);
-  /* 마진이 줄었으므로 translate 값도 살짝 조정 (필요시 0으로 변경 가능) */
-  transform: translateX(0px); 
+  /* 기본 마진 20px + 이동분 50px = 총 70px 지점에 위치 */
+  left: calc(var(--side-margin) + 50px); 
   z-index: 1100;
 }
 
@@ -113,6 +115,7 @@ html, body {
   cursor: pointer;
   margin-bottom: 8px;  
   user-select: none;
+  text-decoration: underline;
 }
 
 .era-list {
@@ -134,6 +137,7 @@ html, body {
   opacity: 1;
 }
 
+/* 3D 씬 설정 */
 .scene {
   position: relative; width: 100vw; height: 100vh;
   perspective: 2000px; cursor: grab;
@@ -175,7 +179,7 @@ html, body {
   animation: spin linear infinite;
 }
 
-/* 애니메이션 설정 */
+/* 각 레이어별 애니메이션 속도 */
 #layer1 .orbit-content, #layer1 .orbit-item img { animation-duration: 85s; }
 #layer2 .orbit-content, #layer2 .orbit-item img { animation-duration: 70s; }
 #layer3 .orbit-content, #layer3 .orbit-item img { animation-duration: 70s; }
@@ -196,6 +200,7 @@ html, body {
   opacity: 0.7; 
 }
 
+/* 궤도 기울기 설정 */
 #layer1 { transform: rotateY(0deg); }
 #layer2 { transform: rotateY(72deg); }
 #layer3 { transform: rotateY(144deg); }
@@ -203,6 +208,7 @@ html, body {
 #layer5 { transform: rotateY(288deg); }
 #layer6 { transform: rotateX(90deg); }
 
+/* 아이템 공통 설정 */
 .orbit-item { 
   position: absolute; 
   width: 45px; 
@@ -218,9 +224,8 @@ html, body {
   user-select: none; -webkit-user-drag: none;
 }
 
-/* Layer 6 (Modern) 특별 설정 - 이미지가 보이지 않던 문제 해결 포함 */
+/* Layer 6 (Modern) 특별 수직 설정 */
 #layer6 .orbit-item {
-  /* rx를 90deg가 아닌 -90deg로 주거나 Y축 회전을 섞어 세워야 보일 수 있습니다 */
   --rx: -90deg; 
   transform: translate(-50%, -50%) rotateX(var(--rx)) !important;
   transform-style: preserve-3d;
@@ -230,6 +235,4 @@ html, body {
   animation: none !important; 
   transform: none !important;
   backface-visibility: visible !important;
-  /* 수평 궤도에서 이미지가 뒤집혀 보일 경우 아래 주석 해제 */
-  /* transform: rotateZ(180deg) !important; */
 }
