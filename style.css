@@ -114,11 +114,10 @@ html, body {
 }
 
 .era-label {
-  font-size: 10px;
+  font-size: 8px;
   cursor: pointer;
   margin-bottom: 8px;  
   user-select: none;
-  text-decoration: underline;
 }
 
 .era-list {
@@ -129,7 +128,7 @@ html, body {
 }
 
 .era-list li {
-  font-size: 10px;
+  font-size: 8px;
   cursor: pointer;
   opacity: 0.4;
   transition: opacity 0.3s ease;
