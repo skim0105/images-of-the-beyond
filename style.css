@@ -4,7 +4,8 @@
   --zoom: 1;
   --rotateX: 15deg;
   --rotateY: 0deg;
-  --side-margin: 40px;
+  /* 마진을 40px에서 20px로 줄였습니다 */
+  --side-margin: 20px; 
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,9 +25,16 @@ html, body {
 }
 
 .top-nav { 
-  position: fixed; top: 20px; right: var(--side-margin); 
-  width: clamp(280px, 30vw, 450px); z-index: 1000; 
-  display: flex; justify-content: space-between; align-items: center; font-size: 10px; 
+  position: fixed;
+  top: 20px; 
+  right: var(--side-margin); 
+  /* 가로폭을 살짝 넓혀 텍스트 배치를 여유롭게 잡았습니다 */
+  width: clamp(250px, 35vw, 450px); 
+  z-index: 1000; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  font-size: 10px; 
 }
 
 .nav-item { cursor: pointer; user-select: none; }
@@ -35,7 +43,7 @@ html, body {
   position: fixed; 
   top: 55px; 
   right: var(--side-margin); 
-  width: clamp(280px, 30vw, 450px); 
+  width: clamp(250px, 35vw, 450px); 
   max-height: 80vh;
   z-index: 1000; 
   display: none; 
@@ -54,27 +62,34 @@ html, body {
   position: fixed; 
   right: var(--side-margin); 
   bottom: 25px; 
-  width: clamp(280px, 30vw, 450px); 
+  width: clamp(250px, 35vw, 450px); 
   z-index: 1000; 
   pointer-events: none;
+  /* 오른쪽 정렬 유지 */
+  text-align: right; 
 }
 
-.site-title { font-family: Georgia, serif; font-size: 26px; font-weight: normal; }
+.site-title { 
+  font-family: Georgia, serif; 
+  font-size: 26px; 
+  font-weight: normal; 
+}
 
 .controls { 
   position: fixed; 
   right: var(--side-margin); 
   top: 50%;
   transform: translateY(-50%); 
-  display: flex; flex-direction: 
-  column; gap: 10px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
   z-index: 1000;
 }
 
 .controls button {
   width: 24px; 
-  height: 24px; border: 
-  0.5px solid #000; 
+  height: 24px; 
+  border: 0.5px solid #000; 
   background: var(--bg);
   cursor: pointer; 
   display: flex; 
@@ -84,25 +99,25 @@ html, body {
 
 .controls button:hover { background: #000; color: #fff; }
 
-
 .era-container {
   position: fixed;
   top: 45px;
   left: var(--side-margin);
-  /* X축(가로) 방향으로 30px 이동 */
-  transform: translateX(50px); 
+  /* 마진이 줄었으므로 translate 값도 살짝 조정 (필요시 0으로 변경 가능) */
+  transform: translateX(0px); 
   z-index: 1100;
 }
 
 .era-label {
   font-size: 10px;
   cursor: pointer;
-  margin-bottom: 8px;  user-select: none;
+  margin-bottom: 8px;  
+  user-select: none;
 }
 
 .era-list {
   list-style: none;
-  display: none; /* 클릭 전까지 숨김 */
+  display: none; 
   flex-direction: column;
   gap: 4px;
 }
@@ -130,9 +145,7 @@ html, body {
   position: absolute;
   width: 80vmin; height: 80vmin;
   transform-style: preserve-3d;
-  /* 핵심: 변수 적용 */
   transform: scale(var(--zoom)) rotateX(var(--rotateX)) rotateY(var(--rotateY));
-  /* pointer-events: none을 제거하거나 하위 요소에서 다시 auto로 설정해야 함 */
   pointer-events: none; 
 }
 
@@ -147,14 +160,14 @@ html, body {
 .world.focus-mode .orbit-layer {
   filter: blur(8px);
   opacity: 0.1;
-  pointer-events: none; /* 블러된 레이어는 클릭 방지 */
+  pointer-events: none; 
 }
 
 .world.focus-mode .orbit-layer.highlight {
   filter: blur(0px);
   opacity: 1;
   pointer-events: auto;
-  z-index: 500; /* 선택된 레이어를 앞으로 끌어올림 */
+  z-index: 500; 
 }
 
 .orbit-content {
@@ -179,8 +192,8 @@ html, body {
   fill: none; 
   stroke: #000; 
   stroke-width: 0.4px;
-  stroke-dasharray: 1.2; /* 1px 선, 4px 공백 - 훨씬 섬세해 보입니다 */
-  opacity: 0.7; /* 점선이 너무 진하면 이미지가 죽을 수 있으니 약간 낮춰보세요 */
+  stroke-dasharray: 1.2; 
+  opacity: 0.7; 
 }
 
 #layer1 { transform: rotateY(0deg); }
@@ -190,13 +203,11 @@ html, body {
 #layer5 { transform: rotateY(288deg); }
 #layer6 { transform: rotateX(90deg); }
 
-
 .orbit-item { 
   position: absolute; 
   width: 45px; 
   transform-style: preserve-3d; 
   left: var(--x); top: var(--y); 
-  /* translate 뒤에 rotateX(var(--rx, 0deg))를 추가합니다 */
   transform: translate(-50%, -50%) rotateX(var(--rx, 0deg)); 
   pointer-events: auto;
 }
@@ -207,14 +218,18 @@ html, body {
   user-select: none; -webkit-user-drag: none;
 }
 
+/* Layer 6 (Modern) 특별 설정 - 이미지가 보이지 않던 문제 해결 포함 */
 #layer6 .orbit-item {
+  /* rx를 90deg가 아닌 -90deg로 주거나 Y축 회전을 섞어 세워야 보일 수 있습니다 */
+  --rx: -90deg; 
   transform: translate(-50%, -50%) rotateX(var(--rx)) !important;
   transform-style: preserve-3d;
 }
 
-/* 3. 이미지 설정 */
 #layer6 .orbit-item img {
-  animation: none !important; /* 수평 회전 시 이미지가 굴러가지 않게 방지 */
+  animation: none !important; 
   transform: none !important;
   backface-visibility: visible !important;
+  /* 수평 궤도에서 이미지가 뒤집혀 보일 경우 아래 주석 해제 */
+  /* transform: rotateZ(180deg) !important; */
 }
