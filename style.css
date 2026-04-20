@@ -165,8 +165,8 @@ html, body {
 }
 
 .world.focus-mode .orbit-layer {
-  filter: blur(8px);
-  opacity: 0.1;
+  filter: blur(4px);
+  opacity: 0.12;
   pointer-events: none; 
 }
 
@@ -225,7 +225,6 @@ html, body {
 }
 
 #layer6 .orbit-item {
-  --rx: -90deg; 
   transform: translate(-50%, -50%) rotateX(var(--rx)) !important;
   transform-style: preserve-3d;
 }
