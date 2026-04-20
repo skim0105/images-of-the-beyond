@@ -26,36 +26,60 @@ html, body {
 .top-nav { 
   position: fixed; top: 20px; right: var(--side-margin); 
   width: clamp(280px, 30vw, 450px); z-index: 1000; 
-  display: flex; justify-content: space-between; align-items: center; font-size: 12px; 
+  display: flex; justify-content: space-between; align-items: center; font-size: 10px; 
 }
 
 .nav-item { cursor: pointer; user-select: none; }
 
 .about-overlay {
-  position: fixed; top: 55px; right: var(--side-margin); 
-  width: clamp(280px, 30vw, 450px); max-height: 80vh;
-  z-index: 1000; display: none; overflow-y: auto; background: var(--bg); 
+  position: fixed; 
+  top: 55px; 
+  right: var(--side-margin); 
+  width: clamp(280px, 30vw, 450px); 
+  max-height: 80vh;
+  z-index: 1000; 
+  display: none; 
+  overflow-y: auto; 
+  background: var(--bg); 
 }
 
 .about-content {
-  font-size: 11px; line-height: 1.8; text-align: justify; word-break: keep-all;
+  font-size: 10px; 
+  line-height: 1.6; 
+  text-align: justify; 
+  word-break: keep-all;
 }
 
 .site-footer {
-  position: fixed; right: var(--side-margin); bottom: 25px; 
-  width: clamp(280px, 30vw, 450px); z-index: 1000; pointer-events: none;
+  position: fixed; 
+  right: var(--side-margin); 
+  bottom: 25px; 
+  width: clamp(280px, 30vw, 450px); 
+  z-index: 1000; 
+  pointer-events: none;
 }
 
-.site-title { font-family: Georgia, serif; font-size: 28px; font-weight: normal; }
+.site-title { font-family: Georgia, serif; font-size: 26px; font-weight: normal; }
 
 .controls { 
-  position: fixed; right: var(--side-margin); top: 50%;
-  transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 1000;
+  position: fixed; 
+  right: var(--side-margin); 
+  top: 50%;
+  transform: translateY(-50%); 
+  display: flex; flex-direction: 
+  column; gap: 10px; 
+  z-index: 1000;
 }
 
 .controls button {
-  width: 24px; height: 24px; border: 1px solid #000; background: var(--bg);
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  width: 24px; 
+  height: 24px; border: 
+  0.5px solid #000; 
+  background: var(--bg);
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
 }
 
 .controls button:hover { background: #000; color: #fff; }
@@ -63,18 +87,17 @@ html, body {
 
 .era-container {
   position: fixed;
-  top: 45px; /* 문장(top 20px) 바로 아래 */
+  top: 45px;
   left: var(--side-margin);
+  /* X축(가로) 방향으로 30px 이동 */
+  transform: translateX(50px); 
   z-index: 1100;
 }
 
 .era-label {
-  font-size: 12px;
+  font-size: 10px;
   cursor: pointer;
-  font-weight: bold;
-  margin-bottom: 8px;
-  text-decoration: underline;
-  user-select: none;
+  margin-bottom: 8px;  user-select: none;
 }
 
 .era-list {
