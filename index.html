@@ -4,19 +4,24 @@
   <meta charset="UTF-8">
   <title>Images of the Beyond</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 </head>
-<body>
 
-  <div class="sentence">The following metadata components are established to track formal transformations and the conceptual transitions of meaning</div>
+<body>
+  <div class="bg-wing-overlay"></div>
+
+  <div class="sentence">THE FOLLOWING METADATA COMPONENTS ARE ESTABLISHED TO TRACK FORMAL TRANSFORMATIONS AND THE CONCEPTUAL TRANSITIONS OF MEANING</div>
   
   <nav class="top-nav">
     <div class="nav-item" id="aboutBtn">ABOUT</div>
     <div class="nav-item" id="uploadBtn">UPLOAD</div>
-    <div class="nav-item">MAP</div>
+    <div class="nav-item" id="indexOpenBtn">INDEX</div>
   </nav>
 
   <aside id="infoPanel" class="side-panel">
-    <div style="margin-top:auto; color:#444; font-size:11px;">HOVER OVER OBJECTS</div>
+    <div id="infoContent">
+      <div class="hover-guide">HOVER OVER OBJECTS</div>
+    </div>
   </aside>
 
   <div class="controls">
@@ -24,8 +29,7 @@
     <button id="zoomOut">-</button>
   </div>
 
-  <div class="era-container">
-    <div class="era-label" id="eraMenuBtn">ERA</div>
+  <div class="era-container">    
     <ul class="era-list" id="eraList">
       <li data-target="all" class="active">ALL</li>
       <li data-target="layer1">ANCIENT</li>
@@ -39,83 +43,434 @@
 
   <main class="scene" id="scene">
     <div class="world" id="world">
+
       <div class="orbit-layer" id="layer1">
         <div class="orbit-content">
-          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;" data-name="Apkallu" data-date="883–859 B.C." data-loc="Iraq" data-mat="Gypsum alabaster" data-size="240cm"><img src="ancient/ancient1.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="ancient/ancient2.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="ancient/ancient3.jpg"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="ancient/ancient4.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="ancient/ancient5.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="ancient/ancient6.jpg"></div>
+          <svg class="orbit-svg" viewBox="0 0 1000 1000">
+            <ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" />
+          </svg>
+
+          <div class="orbit-item" 
+          style="--x: 95%; --y: 50%;" 
+          data-title="Apkallu" 
+          data-type="The Sages of the Abyss" 
+          data-wing="권위와 수호" 
+          data-artist="Unknown Master" 
+          data-year="883~859 B.C." 
+          data-place="Iraq" 
+          data-background="신아시리아 문화에서 독수리 머리 압칼루는 '신성한 지혜의 엄격함'을 대변한다. 날카로운 부리와 강렬한 시선은 적과 악령 모두에게 위압갑을 주도록 설계되어 있다. 이는 수호란 압도적인 힘과 우주적 질서를 과시하는 일이었음을 보여준다.">
+            <img src="ancient/ancient1.jpg">
+          </div>
+
+          <div class="orbit-item" 
+          style="--x: 72.5%; --y: 88.97%;"
+          data-title="Assyrian Winged Genii: The Archetype of Guardian" 
+          data-type="Primordial Guardian " 
+          data-wing="권위와 수호" 
+          data-artist="Unknown Master" 
+          data-year="883~859 B.C." 
+          data-place="Iraq" 
+          data-background="신아시리아 시대 천사의 '문화적 현상'은 정치적 권위의 연장이었다. 거대하고 무거운 날개, 엄격하고 반복적인 패턴(특히 수염과 근육 묘사)은 절대적인 질서와 힘, 왕권신수설을 중시했던 문화를 반영한다. 이들은 '위로'를 주는 존재가 아니라, 제국의 위엄을 과시하는 '위압적인' 수호자였다.">
+            <img src="ancient/ancient2.jpg">
+          </div>
+
+          <div class="orbit-item" 
+          style="--x: 27.5%; --y: 88.97%;"         
+          data-title="Eros" 
+          data-type="Guardian" 
+          data-wing="권위와 수호" 
+          data-artist="Lysippos" 
+          data-year="320~330 B.C." 
+          data-place="Greece" 
+          data-background="고대 그리스 고전기 후기 리시포스에 의해 정립된 에로스 도상은 엄격한 질서에서 해방시켜 사실적인 해부학적 구조와 역동적인 심리 묘사를 결합한 인본주의적 예술관의 정수를 보여준다. 당시 그리스 사회가 신권 중심에서 인간의 감각과 개인의 감정을 중시하는 헬레니즘 시대로 이행하는 과도기적 시대상을 반영하여, 에로스의 날개는 실제 조류의 깃털처럼 부드럽고 유연한 곡선으로 묘사되기 시작했다. 이러한 시각적 변화는 천사 도상학에서 '신성의 인간화'를 이끌어낸 결정적 사건으로, 이후 로마 시대를 거쳐 르네 상스 예술의 '푸토'로 계승되며 성경 속 두렵고 비가시적이었던 영적 존재들을 아름답고 친근한 육신을 가진 존재로 시각화하는 데 지대한 예술사적 영향력을 미쳤다.">
+            <img src="ancient/ancient3.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"
+          data-title="Lamassu" 
+          data-type="Divine Guardian" 
+          data-wing="권위와 수호" 
+          data-artist="Royal Sculptors of the Neo-Assyrian Empire" 
+          data-year="705~721 B.C." 
+          data-place="Germany" 
+          data-background="경계의 파수꾼으로라마수는 공전이나 성소의 입구에 위치하여 악한 기운이 침범하지 못하도록 막는 문지기 천사의 원형이다. 하이브리드 형태로 인간의 지혜(머리), 독수리의 편재성(날개), 황소의 힘(몸)을 결합하여 신성한 존재의 전능함을 시각화했다  다섯 개의 다리는 정면에서 보면 멈춰 서서 침입자를 위협하고, 측면에서 보면 당당히 걷는 것처럼 보이도록 다리를 5개로 조각했다.">
+            <img src="ancient/ancient4.jpg">
+          </div>
         </div>
       </div>
 
       <div class="orbit-layer" id="layer2">
         <div class="orbit-content">
-          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="gothic/gothic1.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="gothic/gothic2.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="gothic/gothic3.jpg"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="gothic/gothic4.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="gothic/gothic5.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="gothic/gothic6.jpg"></div>
+          <svg class="orbit-svg" viewBox="0 0 1000 1000">
+            <ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" />
+          </svg>
+
+          <div class="orbit-item" 
+          style="--x: 95%; --y: 50%;"
+          data-title="Pontificale Shirborniensis, Crucifixion" 
+          data-type="Celestial Mourners&Collectors of the Holy Blood" 
+          data-wing="초월과 승화" 
+          data-artist="Michel Wolgemut, Wilhelm Pleydenwurff" 
+          data-year="1493" 
+          data-place="UK" 
+          data-background="15세기 초반 영국의 문화적 시대상은 중세의 엄격한 상징주의가 후기 고딕의 화려하고 세밀한 '궁정 예술'로 정점을 찍은 시기였다. 예술사적으로는 자연주의적 묘사와 장식적인 화려함이 결합된 '국제 고딕 양식'이 유럽 전역을 지배했다. 이 시기의 시대상은 천사의 도상에 큰 변화를 주었다. 천사들은 그리스도의 수난에 직접 참여하며 그 흘린 피를 잔으로 받는 '전례적 참여자'로 등장한다. 이는 교회가 성찬례의 신비와 그리스도의 인성을 강조하며 신자들의 감성적 공감을 이끌어내려 했던 종교적 분위기를 반영한다."> 
+            <img src="gothic/gothic1.jpg">
+          </div>
+
+          <div class="orbit-item" 
+          style="--x: 72.5%; --y: 88.97%;"
+          data-title="미소 짓는 천사" 
+          data-type="Guardian" 
+          data-wing="초월과 승화" 
+          data-artist="Unknown" 
+          data-year="1236~1245" 
+          data-place="France" 
+          data-background="13세기 프랑스 고딕 전성기, 랭스 대성당의 ‘미소 짓는 천사(Smiling Angel of Reims)’는 과거의 엄숙하고 거리감이 느껴지던 신성함에서 벗어나, 더욱 인간 중심적이고 다가가기 쉬운 성스러움으로 나아가는 혁명적인 변화를 보여주었다. 대성당이 공공 생활의 중심지가 됨에 따라, 이러한 도상은 사실적인 조각 기법을 활용하여 ‘미소’라는 뚜렷한 인간의 감정을 통해 신의 자애로움을 표현하였다. 이러한 변화는 신앙과 이성의 조화를 추구했던 당대의 스콜라 철학을 반영한 것이며, 결과적으로 천사의 존재를 신자들을 천상계로 인도하는 공감 능력 있는 수호자로 탈바꿈시켰다"> 
+          <img src="gothic/gothic2.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"
+          data-title="Arca di San Bonifacio" 
+          data-type="Psychopomps" 
+          data-wing="초월과 승화" 
+          data-artist="Lupo di Francesco" 
+          data-year="1310~1320" 
+          data-place="Italy" 
+          data-background="14세기 초반 베로나를 중심으로 한 이탈리아 북부의 문화적 맥락은 도시 국가의 성장과 가문 주심의 종교적 후원이 결합된 '기념비적 장례 문화'의 확산을 보여준다. 예술사적으로 이 시기는 고대 로마의 석관 전통이 중세의 성인 숭배 및 기사도적 가치와 결합하며 '아르카'라는 독특한 석함 형식을 완성한 단계이다. 여기서 천사는 지상의 인물을 신성한 세계로 인도하는 '영적인 가교'로 기능한다. 특히 베로나 조각 특유의 강렬한 입체감은 당시 교회가 강조했던 성인의 육체적 현존과 영적 부활의 확신을 시각화한 것이며, 천사의 도상은 이러한 영광스러운 승천을 보증하는 문화적 장치로 사용되었다."> >
+            <img src="gothic/gothic3.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"
+          data-title="The angel symbol of the Evangelist Saint Matthewu" 
+          data-type="Messenger" 
+          data-wing="초월과 승화" 
+          data-artist="Unknown" 
+          data-year="1350" 
+          data-place="Italy" 
+          data-background="신학적 상징이 건축 공간 속에 체계적으로 통합된 것이 특징이며, 종교적 인물들은 신성한 권위와 초기 인본주의가 결합된 모습으로 묘사되었다. 예쑬사적으로 이 시기는 '가난한 자들의 성경'이라 불리는 시각적 언어를 통해 신자들을 교육하려 했으며, 테트라모프(4복음사가의 상징)와 같은 복잡한 교리를 석조 조각을 통해 전달하고자 했다. 성 마태오를 인간 형상의 천사로 묘사한 것은 마태오 복음서의 핵심 주제인 '그리스도의 인성'을 신학적으로 강조하 결과다. 이 시기는 로마네스크의 경직되고 추상적인 형태에서 벗어나 더 부피감 있고 표현력이 풍부한 옷 주름으로 나아가는 과도기를 보여주며. 이는 물리적 세계를 신성한 질서의 반영으로 관찰하려 했던 당대 문화적 변화를 시사한다."> 
+            <img src="gothic/gothic5.jpg">
+          </div>
         </div>
       </div>
 
       <div class="orbit-layer" id="layer3">
         <div class="orbit-content">
-          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="early/early1.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="early/early2.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="early/early3.jpg"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="early/early4.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="early/early5.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="early/early6.jpg"></div>
+          <svg class="orbit-svg" viewBox="0 0 1000 1000">
+            <ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" />
+          </svg>
+
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"
+          data-title="Archangel Michael Diptych" 
+          data-type="Celestial Courtier" 
+          data-wing="권위와 수호" 
+          data-artist="Unknown" 
+          data-year="525~550 AD" 
+          data-place="Istanbul" 
+          data-background="6세기 초 유스티니아누스 1세 치하의 비잔틴 제국은 로마의 고전적 사실주의와 기독교적 추상하가 교차하는 '유스티니아누스 르네상스' 시대를 통과하고 있었으며, 이 예술적 흐름은 천사를 고대의 위압적인 괴수형 수호자에서 로마 행정관의 정교한 의복과 비례미를 입은 '세련된 천상의 관료'로 재정의하는 계기가 되었다. 특히 건축적 배경과 날개의 위치가 충돌하는 의도적인 공간적 모호성은 천사가 물리적 법칙을 초월한 존재임을 시각화한 것으로, 이후 중세 천사 도상이 배경을 금색으로 처리하거나 원근법을 무시하며 '초월적 차원의 영성'을 강조하는 전통의 중요한 시발점이 되었다.">
+            <img src="early/early1.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"
+          data-title="Christ in majesty with angels" 
+          data-type="Seraphim" 
+          data-wing="권위와 수호" 
+          data-artist="Magius" 
+          data-year="940~945 AD" 
+          data-place="Spain" 
+          data-background="10세기 이베리아반도의 모사라베(Mozarabic) 맥락에서 등장한 이 도상은 레콩키스타(Reconquista, 국토 회복 운동) 시대 속에서 기독교 미술이 이슬람의 장식적 영향을 흡수한 형태를 보여준다. 여기서 천사는 사실적인 존재가 아니라, 절대적인 질서와 신성한 신비의 영적 상징으로 기능한다. 주로 수도원에서 요한계시록을 설명하기 위해 사용된 이 형상들은 선명하고 평면적인 색채와 반복적인 패턴을 통해 깊은 경외심과 종말론적 외경심을 불러일으키도록 설계되었으며, 명상적 예배를 위한 시각적 지침서 역할을 수행하였다.">
+            <img src="early/early2.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"
+          data-title="Lorsch Gospels Cover"
+          data-type="Celestial herald Scriptural witness" 
+          data-wing="권위와 수호" 
+          data-artist="Unknown" 
+          data-year="810 AD" 
+          data-place="Germany" 
+          data-background="9세기 초 카롤링거 르네상스는 샤를마뉴 대제가 로마 제국의 영광을 재현하기 위해 추진한 문화적 부흥기로, 예술사적으로는 고전기 로마와 비잔틴의 미학을 게르만적 전통과 융합하려 했다. 이 시기 천사 도상은 종교적 기호를 넘어, 새롭게 수립된 '신성 로마 제국'의 통치 정당성을 하늘이 승인했음을 상징하는 '증언자'로 활용되었다. 로르슈 복음서 표지의 정교한 상아 조각은 천사를 다시금 고전적인 우아함을 지닌 존재로 복원함으로써, 카롤링거 왕조가 고대 로마의 문명적 전통을 이어받았음을 시각적으로 선포하는 역할을 했다">
+            <img src="early/early3.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"
+          data-title="Grave slab at Wirksworth, Derbyshire"
+          data-type="Psychopomps and adorants" 
+          data-wing="초월과 승화" 
+          data-artist="Unknown" 
+          data-year="800 AD" 
+          data-place="England" 
+          data-background="9세기 초 잉글랜드의 앵글로-색슨 예술은 로마적 전통과 북유럽의 선형적 문양이 융합되는 괴도기에 있었다. 위커스위스 묘비석의 천사들은 정교한 해부학적 묘사보다는 서사적 전달에 충실하다. 거친 사암 위에 새겨진 천사들은 당시 문맹이었던 신자들에게 죽음이 끝이 아니라 천사의 인도에 의해 영생으로 이어지는 과정임을 시적으로 교육하는 '돌애 새긴 성경'의 일부였다. 천사가 삶과 죽음의 경계를 지키고 인간을 신의 영역으로 이끄는 '영적 안내자'로 인식되었음을 보여준다.">
+            <img src="early/early4.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"
+          data-title="Saint-Sever Beatus"
+          data-type="Apocalyptic Herald" 
+          data-wing="권위와 수호" 
+          data-artist="Stephanus Garisa" 
+          data-year="1050~1060 AD" 
+          data-place="Spain" 
+          data-background="11세기 중반 프랑스 남서부에서 제작된 생 세베르 베아투스는 스페인의 모자라브 양식이 프랑스 로마네스크 양식과 만나는 '국제적 양식의 교차'를 보여주며, 당시 유럽 전역에 퍼져 있던 종말론적 공포와 신앙적 열망을 예술적으로 승화시켰다. 이 시기 에술사는 이슬람의 장식적 요소와 북유럽의 선형적 추상미가 결합되던 역동적인 시기였으며, 그 안에서 천사 도상은 수호자가 아니라 요한 계시록의 예언을 시각적으로 강력하게 전달하여 신자들에게 회개와 경각심을 주는 '종말의 집행자'로 묘사되었다. 이는 천사가 지상의 자연(새들)과 천상의 질서를 연결하는 절대적인 매개채로서, 인간이 이해할 수 없는 신의 거대한 계획을 가시화하는 역할을 수행했음을 의미한다.">
+            <img src="early/early6.jpg">
+          </div>
         </div>
       </div>
 
       <div class="orbit-layer" id="layer4">
         <div class="orbit-content">
-          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="renaissance/renaissance1.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="renaissance/renaissance2.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="renaissance/renaissance3.jpg"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="renaissance/renaissance4.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="renaissance/renaissance5.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="renaissance/renaissance6.jpg"></div>
+          <svg class="orbit-svg" viewBox="0 0 1000 1000">
+            <ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" />
+          </svg>
+
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"
+          data-title="A pair of wooden angels"
+          data-type="Putti" 
+          data-wing="비주얼 컨셉" 
+          data-artist="Unknown" 
+          data-year="1720" 
+          data-place="Italy, France" 
+          data-background="르네상스 유럽은 고전 그리스-로마 양식의 재발견이 기독교 신학과 결합하여 ‘신성한 자연주의’를 탄생시킨 ‘인문주의적 통합’ 시대를 반영한다. 르네상스 조각에 대한 미술사적 담론에 따르면, 이 시기의 시대상은 ‘조화로운 이상주의’와 ‘교회의 후원’으로 정의된다. 부드럽고 통통한 해부학적 구조와 역동적인 콘트라포스토 자세로 표현된 목조 천사들은 인간 신체의 아름다움을 통해 신성을 바라보기 시작한 사회상을 반영한다. 중세의 경직되고 초월적인 도상과 달리, 이 천사들은 제단과 같은 성스러운 건축 공간 안에서 ‘분위기적 매개자’로 작동한다. 이는 종교 예술이 공동체의 영적 지주 역할을 했던 시대를 투영하며, ‘신성함’이 신자들에게 경외심과 헌신을 불러일으키기 위해 교회가 지원한 공공적이고 공유된 실체였음을 보여준다.">
+            <img src="renaissance/renaissance1.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"
+          data-title="Adoring angels"
+          data-type="Adroing angels" 
+          data-wing="페르소나" 
+          data-artist="Unknown" 
+          data-year="1550~1580" 
+          data-place="Italy" 
+          data-background="16세기 이탈리아에서 천사의 '문화적 현상'은 인체 해부학과 감정의 깊이에 집중했던 르네상스의 특징을 반영한다. 로마네스크 시대의 딱딱한 석조 천사와 달리, 목조상들은 섬세한 표정과 자연스러운 옷주름을 보여줍니다. 또한 채색(polychrome) 마감은 '살아있는 현존감'을 더해주는데, 이는 예술적 기교를 통해 신성한 존재를 가깝고 실재하는 것처럼 느끼게 하려 했던 당시의 문화를 나타낸다.">
+            <img src="renaissance/renaissance2.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"
+          data-title="Agony in the Garden"
+          data-type="Comforting & Ministering Angel" 
+          data-wing="페르소나" 
+          data-artist="Giovanni Bellini" 
+          data-year="1465~1470" 
+          data-place="Italy" 
+          data-background="르네상스 시대는 신 중심의 세계관에서 인간과 자연의 질서를 탐구하는 '인본주의'로 회귀를 의미한다. 예술사적으로 선원근법과 해부학적 지식을 바탕으로 성스러운 사건을 실제 존재하는 '물리적 공간'안에 재구성하였다. 천사는 대기 원근법이 적용된 풍경 속에서, 인간(예수)와 정서적으로 교감하는 존재로 묘사된다. 이는 인간의 고뇌가 서린 역사적 현장 속에 신이 실재한다는 당대의 신학적 및 철학적 통찰을 반영하며, 종교적 서사를 보다 객관적이고 사실적인 시각으로 관찰하려 했던 시대적 열망을 보여준다.">
+            <img src="renaissance/renaissance3.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"
+          data-title="Unknown"
+          data-type="Divine Messenger & Facilitator" 
+          data-wing="페르소나" 
+          data-artist="Anonymous Jewish Eastern Scribes"
+          data-year="1480~1520" 
+          data-place="Germany" 
+          data-background="15세기 독일 및 북유럽 지역에서 유행하던 세밀화 기법이 투영된 이 도상은 중세의 상징주의와 초기 르네상스의 사실적 관찰력이 결합된 사례니다. 천사가 선지자 하바쿡의 머리채를 잡아 운반하는 역동적인 모습은 천사가 영적 존재를 넘어 지상 세계의 물리적 법칙에 직접 개입하는 '기적의 조력자'임을 시각화합니다. 견고하게 묘사된 성곽의 구조와 사자들의 형상은 종교적 기적을 당대 북유럽 시민들의 일상적 공간으로 끌어들여 신앙의 실재감을 강조하려는 시대적 의도를 보여준다.">
+            <img src="renaissance/renaissance4.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"
+          data-title="The Lamentation (The Mourning of Christ)"
+          data-type="Emotional Mourners" 
+          data-wing="페르소나" 
+          data-artist="Giotto di Bondone" 
+          data-year="1305" 
+          data-place="Italy" 
+          data-background="조토의 스크로베니 예배당은 비잔틴 도상의 초월적 경직성이 실체적인 인간 경험으로 녹아들기 시작한 14세기의 ‘초기 인문주의’를 반영한다. 예배당의 후원 맥락을 연구한 줄리아 밀러(Julia Miller)와 로리 테일러-미첼(Laurie Taylor-Mitchell)에 따르면, 이 시기의 시대상은 ‘시각적 화려함을 통한 속죄’로 정의된다. <애도> 속의 천사들은 단순히 신성한 목격자가 아니라 “인간 비탄의 심리학적 확장”이다. 단축법으로 묘사된 그들의 신체와 왜곡된 얼굴은 순수한 영적 시선에서 감정의 경험적 관찰로 이행하던 사회상을 반영한다. 이는 북부 이탈리아의 ‘상업 혁명’을 투영하며, 부상하던 금융 계급은 자신들의 세속적 부를 ‘구원의 경제’를 통해 정당화하고자 했다. 신성은 지상으로 내려왔으며, 결과적으로 성스러운 신비는 부유한 후원자들이 자신의 구원을 위해 영적 화폐로 제시할 수 있는 생생한 실재로 변환되었다.">
+            <img src="renaissance/renaissance5.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"
+          data-title="The Garden of Earthly Delights"
+          data-type="Surreal Hybrids & Indulgers" 
+          data-wing="권위와 수호" 
+          data-artist="Hieronymus Bosch" 
+          data-year="1490~1510" 
+          data-place="Netherland" 
+          data-background="중세 말기의 종교적 불안감과 북유럽 르네상스 특유의 사실주의적 환상 정치가 결합된 결과이다. 15세기 말 종말론적 공포와 도덕적 타락에 대한 경계심이 팽배했던 시대적 상황 속에서, 보스는 천사가 추락하며 곤충이나 파충류 같은 기괴한 생명체로 변형되는 모습을 통해 인간의 죄악, 특히 '교만(Pride)'이 신성한 본질을 어떻게 오염시키는지를 시각적으로 고발하고자 했다. 이는 이탈리아 르네상스의 이상적인 아름다움과는 대조되는 북유럽 특유의 세밀한 묘사와 중세 필사본의 기묘한 도상학(Iconography)에 뿌리를 두고 있으며, 결과적으로 보스의 천사는 단순한 숭배의 대상을 넘어 성스러움과 추함의 대비를 통해 인간의 이중성과 도덕적 책무를 비추는 '시대의 거울'로서 탄생하게 되었다.">
+            <img src="renaissance/renaissance6.jpg">
+          </div>
         </div>
       </div>
 
       <div class="orbit-layer" id="layer5">
         <div class="orbit-content">
-          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="romanesque/romanesque1.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="romanesque/romanesque2.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="romanesque/romanesque3.jpg"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="romanesque/romanesque4.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="romanesque/romanesque5.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="romanesque/romanesque6.jpg"></div>
+          <svg class="orbit-svg" viewBox="0 0 1000 1000">
+            <ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" />
+          </svg>
+
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"
+          data-title="Romanesque angel musician"
+          data-type="Celestial musician" 
+          data-wing="권위와 수호, 비주얼 컨셉" 
+          data-artist="Unknown" 
+          data-year="1150" 
+          data-place="France" 
+          data-background="12세기 유럽은 봉건제와 교회의 권위가 살의 모든 영역을 지배하던 시기였다. 당시의 성당은 예배 장소가 아니라, 속세로부터 신자들을 보호하는 '영적인 요새'였다. 이러한 구조 속에서 천사는 신성한 성당을 지탱하는 파수꾼이었다. 날개와 몸이 돌덩어리로 응축된 것은, 신성한 진리가 흔들림 없는 견고함을 가져야 한다는 시대적 믿음을 반영한다. 천상의 음악을 연주하는 행위조차 우주적 질서를 유지하는 엄숙한 의식으로 묘사되었다.">
+            <img src="romanesque/romanesque1.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"
+          data-title="Saint-Lazare Cathedral: The Dream of the Three Magi"
+          data-type="Revealer & Guardian" 
+          data-wing="권위와 수호, 비주얼 컨셉" 
+          data-artist="Gislebertus" 
+          data-year="1120~1130" 
+          data-place="France" 
+          data-background="로마네스크 시대의 문화적 시대상은 11~12세기 유럽 전역의 '수도원 개혁'과 '성지 순례 문화의 정착'을 배경으로 하며, 예술은 문맹인 신자들에게 성경의 메시지를 전달하는 '시각적 성서'의 역할을 수행했다. 예술사적으로 이 시기는 초기 중세의 평면적인 서사에서 벗어나 건축적 구조 안에 정교한 인물 조각을 배치하는 '건축적 조각'이 비약적으로 발전한 시기이다. 천사의 도상은 인간의 꿈과 무의식 속에 개입하여 신의 섭리를 실현하는 '초월적 인도자'로 정의되며, 당시 교회가 강조했던 성스러운 기적과 신비주의적 세계관이 매체와 결합된 결과이다.">
+            <img src="romanesque/romanesque2.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"
+          data-title="Archangel Michael Weighing Souls"
+          data-type="Judicial executor and judege" 
+          data-wing="권위와 수호, 비주얼 컨셉" 
+          data-artist="Gislebertus" 
+          data-year="1120~1130" 
+          data-place="France" 
+          data-background="로마네스크 시대의 문화적 시대상은 11~12세기 유럽의 '성지 순례 대유행'과 '심판에 대한 종교적 경외심'을 반영한다. 로마네스크의 미카엘은 악마의 속임수에 맞서 공정한 판결을 집행하는 '영적 사법관'으로 묘사된다. 이는 봉건 사회의 위계질서와 법적 엄격함이 천상계에 투영된 결과로, 대중에게 구원을 위한 책무를 시각적으로 교육하는 역할을 수행했다.">
+            <img src="romanesque/romanesque3.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"
+          data-title="Saint-Sever Beatus"
+          data-type="The Apocalyptic Herald" 
+          data-wing="권위와 수호, 비주얼 컨셉" 
+          data-artist="Stephanus Garsia" 
+          data-year="1050 ~ 1075" 
+          data-place="France" 
+          data-background="서기 1000년을 전후하여 종말론적 공포와 이슬람의 팽창으로 인한 기독교 세계의 위기감이 팽배했던 11세기 유럽의 시대적 상황을 반영하고 있다. 당시 교회와 수도원은 도덕적 규율을 강화하고 신성한 질서를 확립하기 위해 요한계시록의 예언을 집행하는 강력한 존재로서 천사를 '종말의 전권 대사'로 호출하였다. 스테파누스 가르시아가 참여한 이 작업 속 천사는 인간적인 해부학을 초월한 로마네스크 특유의 평면적이고 비사실적인 화풍으로 묘사되어 있는데, 이는 사건의 세속성을 지우고 영적인 진실만을 강조하려는 의도를 내포한다. 특히 나팔을 부는 역동적인 자세와 강렬한 선형적 패턴으로 강조된 날개는 천상의 위엄이 물리적 현실에 개입하는 결정적 순간을 상징하며, 천사를 단순한 전령을 넘어 우주적 법칙을 대변하는 하나의 신성한 시각적 기호로서 기능하게 한다.">
+            <img src="romanesque/romanesque4.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"
+          data-title="The Second Trumpet: The Burning Mountain (from an Apocalypse or Psalter)"
+          data-type="The Herald(proclaimer)" 
+          data-wing="권위와 수호, 비주얼 컨셉" 
+          data-artist="Unknown" 
+          data-year="1250~1270" 
+          data-place="England" 
+          data-background="로마네스크 시대의 종말론적 불안이 초기 고딕 양식의 정제된 우아함과 결합하기 시작한 시기에 제작되었다. 고딕과 로마네스크 양식의 절묘한 합일을 보여주는 이 작업에서 날개 위의 공작새 깃털 문양은 '모든 것을 꿰뚫어 보는 신의 눈'을 상징하며, 신자들이 자신의 모든 행동이 신에 의해 관찰되고 있음을 상기하게 하는 문화적 도상으로 사용되었다.">
+            <img src="romanesque/romanesque5.jpg">
+          </div>
         </div>
       </div>
 
       <div class="orbit-layer" id="layer6">
         <div class="orbit-content">
-          <svg class="orbit-svg" viewBox="0 0 1000 1000"><ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" /></svg>
-          <div class="orbit-item" style="--x: 95%; --y: 50%;"><img src="modern/modern1.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"><img src="modern/modern2.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"><img src="modern/modern3.jpg"></div>
-          <div class="orbit-item" style="--x: 5%; --y: 50%;"><img src="modern/modern4.jpg"></div>
-          <div class="orbit-item" style="--x: 27.5%; --y: 11.03%;"><img src="modern/modern5.jpg"></div>
-          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"><img src="modern/modern6.jpg"></div>
+          <svg class="orbit-svg" viewBox="0 0 1000 1000">
+            <ellipse class="orbit-path" cx="500" cy="500" rx="450" ry="450" />
+          </svg>
+
+          <div class="orbit-item" style="--x: 95%; --y: 50%;"
+          data-title="노게임라이프 지브릴"
+          data-type="Weaponized Angel & Enforcer of Intellectual Hierarchy" 
+          data-wing="비주얼 컨셉" 
+          data-artist="Yuu Kamiya" 
+          data-year="2012–Present" 
+          data-place="Japan" 
+          data-background="2010년대 초반 일본은 전문 데이터를 큐레이팅하고 독점하는 능력이 곧 사회적 권력이 되는 ‘정보 자본 시대’였다. 노 게임 노 라이프의 세계관 설정을 다룬 카미야 유우의 인터뷰를 보면, 플뤼겔 종족은 원래 ‘신을 죽이는 병기’로 고안되었으나 ‘게임’이라는 새로운 질서에 의해 그 목적이 상실된 존재들로 설정되었다. 이러한 맥락 내에서 지브릴은 신의 메시지를 전달하는 수동적 매개체였던 고전적 천사를 ‘공격적 지식 수집가’로 재해석했다. 이 시기의 시대상은 ‘데이터 중심의 능력주의’로 정의된다. 천사의 날개와 후광은 더 이상 영성적 순수함의 상징이 아니라 ‘고효율 마력 기관’으로 재맥락화되었으며, 이는 신성을 기능적 성능의 관점에서 바라보는 세속화된 사회를 반영한다. 지브릴은 ‘탈신성화된 학자’를 상징하며, 신성한 형상은 도덕적 의무를 박탈당한 채 ‘지적 자본’을 획득하기 위한 경쟁적 엔진으로 재포장되었다. 이는 세상을 복잡한 데이터 세트로 인식하는 디지털 세대를 반영하며, 신성한 존재를 정보와 생존을 동일시하는 광기 어린 기록가로 변환했다.">
+            <img src="modern/modern1.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 72.5%; --y: 88.97%;"
+          data-title="The Anatomical Angel"
+          data-type="Commercial aura" 
+          data-wing="패르소나" 
+          data-artist="Damien Hirst" 
+          data-year="2008" 
+          data-place="UK" 
+          data-background="2000년대 후반과 2010년대 초반은 전 지구적으로 '생명공학적 회의론'과 '존재의 상업화'가 투영된 시기이며, 유전공학 및 의학의 급격한 발전이 인간의 취약성에 대한 실존적 공포와 충돌했던 시대다. 허스트(Hirst)의 작업에 대한 비판적 분석에 따르면, 이 시대의 문화적 외양은 '내장적 사실주의(Visceral Realism)'와 '과학적 세속주의'로 정의된다. '해부학적 천사(The Anatomical Angel)'는 신성한 전령이 아니라 '신화에 대한 임상적 해부'이며, 천사를 영적인 존재가 아닌 생물리학적 실체로 제시한다. 이는 기도가 아닌 의학과 데이터를 통해 '영생'을 갈구하는 사회상을 반영하며, 성스러운 도상을 죽음의 궁극적 실체와 이를 과학으로 통제하려는 인간의 욕망을 폭로하는 생물학적 구경거리로 전락시킨다. 이는 성스러운 이미지가 초월적인 아우라를 박탈당하고 글로벌 미술 시장을 위한 내장적 상품으로 재용도화된 '포스트모던의 순교자'를 상징한다.">
+            <img src="modern/modern2.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 27.5%; --y: 88.97%;"
+          data-title="메이플스토리 비숍"
+          data-type="The executor of judgment & mercy" 
+          data-wing="권위와 수호, 비주얼 컨셉" 
+          data-artist="넥슨" 
+          data-year="2003" 
+          data-place="Korea" 
+          data-background="메이플스토리의 비숍은 '교단적 권위의 게임화'를 상징하며, 중세 유럽의 고위 성직자와 신성한 전령의 이미지를 기능적인 RPG 역할군으로 번역해낸 결과물이다. 이는 플레이어들이 '희생적인 지원'과 '신성한 심판'이라는 양면적 활동을 통해 자신의 정체성을 찾았던 2000년대 초기 온라인 커뮤니티 문화를 반영하며, 종교적 도상학을 가상의 협력 매커니즘과 결합하였다. 특히 비숍의 스킬 이펙트에서 반복적으로 등장하는 천사의 형상과 성스러운 빛의 기둥은 고전 회화 속 '신의 은총(Divine Grace)'과 '영적 보호'의 시각 언어를 디지털 픽셀로 재해석한 것이다. 이는 과거 성소(Sanctuary)가 제공하던 심리적 안도감을 가상 세계의 '파티 플레이'라는 사회적 생존 전략으로 치환하여, 성스러운 도상이 현대의 엔터테인먼트 환경에서 어떻게 기능적으로 변모했는지를 보여주는 중요한 사례다.">
+            <img src="modern/modern3.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 5%; --y: 50%;"
+          data-title="쿠키런 천사맛 쿠키"
+          data-type="Mascot of Purity"
+          data-wing="비주얼 컨셉" 
+          data-artist="데브시스터즈" 
+          data-year="2013" 
+          data-place="Korea" 
+          data-background="천사맛 쿠키는 기독교의 치루빔 도상을 현대 팝아트적으로 재해석한 사례다. 21세기 케주얼 게임 시대에 맞춰, 과거의 거대하고 두려운 천사상은 친근감과 수집욕구를 자극하는 '귀여움(Kawaii)'의 미학으로 단순화되었다">
+            <img src="modern/modern4.jpg">
+          </div>
+
+          <div class="orbit-item" style="--x: 72.5%; --y: 11.03%;"
+          data-title="포켓몬 아르세우스"
+          data-type="Creator Deity" 
+          data-wing="비주얼 컨셉" 
+          data-artist="Satoshi Tajiri, Ken Sugimori, Junichi Masuda" 
+          data-year="2006" 
+          data-place="Japan" 
+          data-background="2000년대 중반은 글로벌 미디어 프랜차이즈의 역사에서 포켓몬스터의 서사가 단순한 수집 메커니즘을 넘어 방대하고 유사 종교적인 우주론을 구축하던 시기였다. 아르세우스는 이 디지털 신화 내에서 ‘궁극의 기원’을 상징하며, 시리즈의 초점을 생물학적 진화에서 구조화된 창조 신화로 전환시켰다. 이 시대의 문화적 시대상은 고전적인 ‘제1원인’ 논증이 게임 메타데이터를 통해 재해석되는 ‘디지털 일신교’로 정의된다. 앙겔루스 노부스의 파편화되고 혼란스러운 천사들과 달리, 아르세우스는 견고하고 절대적인 질서를 구현한다. ">
+            <img src="modern/modern6.jpg">
+          </div>
         </div>
       </div>
+
     </div>
   </main>
 
-  <div id="aboutOverlay" class="about-overlay" style="display:none;">
+  <div id="aboutOverlay" class="about-overlay">
     <div class="about-content">
       <p>Gallup의 종교·가치관 조사에 따르면, 오늘날 사회에서는 제도 종교에 대한 소속감과 참여가 점차 약화되는 경향이 나타난다. 종교적 정체성과 종교 제도에 대한 신뢰, 그리고 신·천사·천국과 같은 종교적 존재에 대한 믿음 역시 장기적으로 감소하는 흐름을 보이고 있다. 그럼에도 초월적 존재에 대한 상상과 이미지는 완전히 사라지지 않고, 종교의 제도적 맥락을 벗어나 다양한 문화적 형태 속에서 지속적으로 재유통되고 있다. 이러한 현상은 시각 문화에서도 발견된다. 특히 ‘천사’의 이미지는 더 이상 종교적 교리나 신앙의 맥락에만 머무르지 않고, 패션, 장식, 오브제, 대중문화 등 여러 영역에서 반복적으로 등장하며 소비되는 시각적 아이콘으로 기능하고 있다. 그러나 오늘날 소비되는 천사의 이미지와 달리, 역사 속에서 천사의 형상은 특정한 종교적·사회적 맥락 속에서 제작되고 사용되어 왔다. 천사는 성당의 조각과 건축 장식, 제단화와 성화, 기념비와 묘지 조각 등 다양한 매체와 구조 안에서 나타났으며, 시대와 장소에 따라 서로 다른 의미와 역할을 부여받았다. 이 프로젝트는 천사의 형상이 역사 속에서 어떠한 형태로 제작되고 사용되어 왔는지를 조사한다. 조각, 회화, 기념비, 건축 장식 등 다양한 매체에 등장한 천사의 이미지를 수집하고, 시대·지역·매체·기능 등의 메타데이터를 통해 천사의 형식적 변화와 사회문화적 의미의 이동을 분석하고자 한다.</p>
+    </div>
+  </div>
+
+  <div id="detailOverlay" class="detail-overlay">
+    <div class="detail-container">
+      <span class="detail-close" id="detailClose">&times;</span>
+      
+      <div class="detail-img-area">
+        <img id="detailImg" src="">
+      </div>
+
+      <div class="detail-info-area">
+        <h2 id="detailTitle">UNTITLED</h2>
+        
+        <div class="detail-title-line"></div>
+
+        <div class="detail-meta-grid">
+          <div class="meta-row">
+            <span>ARTIST</span>
+            <p id="detailArtist">UNKNOWN</p>
+          </div>
+
+          <div class="meta-row">
+            <span>YEAR</span>
+            <p id="detailYear">UNKNOWN</p>
+          </div>
+
+          <div class="meta-row">
+            <span>PLACE</span>
+            <p id="detailPlace">UNKNOWN</p>
+          </div>
+        </div>
+
+        <div class="extra-data">
+          <div class="data-block">
+            <label>TYPE & FUNCTION</label>
+            <p id="detailType">데이터가 없습니다.</p>
+          </div>
+        </div>
+
+        <div class="extra-data">
+          <div class="data-block">
+            <label>SOCIAL CONTEXT</label>
+            <p id="detailContext">데이터가 없습니다.</p>
+          </div>
+        </div>
+
+        <p id="detailWing"></p>
+      </div>
     </div>
   </div>
 
@@ -123,229 +478,476 @@
     <div class="modal-content">
       <span class="close-modal">&times;</span>
       <h3 class="modal-title">Angel Iconography Scanner</h3>
+
       <div id="drop-area">
         <p id="drop-text">Drop your image here or click to upload</p>
-        <input type="file" id="fileInput" accept="image/*" style="display:none">
+        <input type="file" id="fileInput" accept="image/*">
         <div id="scan-line"></div>
-        <img id="preview-img" src="" style="display:none">
+        <img id="preview-img" src="">
       </div>
+
       <div id="status-text">Ready to scan...</div>
+      
+      <div id="upload-inputs" style="display: none;">
+        <input type="text" id="input-title" placeholder="TITLE" class="scan-input">
+        <input type="text" id="input-type" placeholder="TYPE" class="scan-input">
+        <input type="text" id="input-artist" placeholder="ARTIST" class="scan-input">
+        <input type="text" id="input-year" placeholder="YEAR" class="scan-input">
+        <input type="text" id="input-place" placeholder="PLACE" class="scan-input">
+        <textarea id="input-context" placeholder="SOCIAL CONTEXT" class="scan-input" rows="1"></textarea>
+        
+        <div class="scan-close-guide">CLICK [X] TO UPLOAD TO THE ANGEL ORBIT</div>
+
+        <div id="loading-container" style="display: none;">
+          <div class="loader"></div>
+          <div class="loading-text">UPLOADING TO THE ANGEL ORBIT...</div>
+        </div>
+      </div>
     </div>
   </div>
 
-<script>
+  <div class="era-guide-table">
+  <table>
+    <tbody>
+      <tr>
+        <td style="width: 28%;"><span class="tag">ANCIENT</span></td>
+        <td style="width: 20%;">초월적</td>
+        <td>비인간적 비례, 기하학적 형상, 압도적 크기, 하이브리드</td>
+      </tr>
+      <tr>
+        <td><span class="tag">EARLY MEDIEVAL</span></td>
+        <td>상징적</td>
+        <td>평면성, 대칭적 구도, 정보의 아이콘화, 상징적 도구, 선명한 윤곽선</td>
+      </tr>
+      <tr>
+        <td><span class="tag">ROMANESQUE</span></td>
+        <td>단단한</td>
+        <td>묵직한 물성, 부동의 자세, 엄숙하고 투박한 표정, 수호적 부도성</td>
+      </tr>
+      <tr>
+        <td><span class="tag">GOTHIC MEDIEVAL</span></td>
+        <td>화려한</td>
+        <td>유려한 곡선, 빛의 찬란함, 빛의 투과와 효과, 수직적 상승</td>
+      </tr>
+      <tr>
+        <td><span class="tag">RENAISSANCE</span></td>
+        <td>이상적</td>
+        <td>해부학적으로 완벽한 인체, 친근한 미소, 정서적 교감</td>
+      </tr>
+      <tr>
+        <td><span class="tag">MODERN</span></td>
+        <td>해체적</td>
+        <td>심리적 투영, 형상의 해체</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
 
-document.addEventListener('DOMContentLoaded', () => {
-    const root = document.documentElement;
-    const world = document.getElementById('world');
-    const layers = document.querySelectorAll('.orbit-layer');
-    const scene = document.getElementById('scene');
-    const infoPanel = document.getElementById('infoPanel');
-
-    // 1. UI 요소
-    const aboutBtn = document.getElementById('aboutBtn');
-    const aboutOverlay = document.getElementById('aboutOverlay');
-    const uploadBtn = document.getElementById('uploadBtn');
-    const uploadModal = document.getElementById('uploadModal');
-    const closeModal = document.querySelector('.close-modal');
-    const eraMenuBtn = document.getElementById('eraMenuBtn');
-    const eraList = document.getElementById('eraList');
-    const zoomInBtn = document.getElementById('zoomIn');
-    const zoomOutBtn = document.getElementById('zoomOut');
-
-    const eraData = {
-      layer1: { name: "Ancient", concept: "Transcendental", reason: "비인간적 비례, 기하학적 형상, 압도적 크기 및 하이브리드된 도상이 고대 양식의 초월적 특성을 증명합니다." },
-      layer3: { name: "Early Medieval", concept: "Symbolic", reason: "평면성, 대칭적 구도, 정보의 아이콘화 및 선명한 윤곽선이 초기 중세의 상징적 도상학을 나타냅니다." },
-      layer5: { name: "Romanesque", concept: "Monolithic", reason: "묵직한 물성, 부동의 자세, 엄숙하고 투박한 표정이 로마네스크의 수호적 부도성을 보여줍니다." },
-      layer2: { name: "Gothic Medieval", concept: "Ethereal", reason: "유려한 곡선, 빛의 찬란함, 빛의 투과 효과 및 수직적 상승 구도가 고딕의 화려한 미학을 반영합니다." },
-      layer4: { name: "Renaissance", concept: "Humanistic", reason: "해부학적으로 완벽한 인체, 친근한 미소, 정서적 교감이 인본주의적 이상 세계를 형상화합니다." },
-      layer6: { name: "Modern", concept: "Deconstructed", reason: "심리적 투영과 형상의 해체, 파편화된 구도가 현대 예술의 해체주의적 관점을 드러냅니다." }
-    };
-
-    // 2. 3D 상태 및 제어 (원본 유지)
-    let zoom = 1; let rotateX = 15; let rotateY = 0;
-    let isDragging = false; let prevX, prevY;
-
-    function update3D() {
-      zoom = Math.min(Math.max(zoom, 0.4), 3.5);
-      root.style.setProperty('--zoom', zoom);
-      root.style.setProperty('--rotateX', `${rotateX}deg`);
-      root.style.setProperty('--rotateY', `${rotateY}deg`);
-    }
-
-    if(zoomInBtn) zoomInBtn.onclick = () => { zoom += 0.2; update3D(); };
-    if(zoomOutBtn) zoomOutBtn.onclick = () => { zoom -= 0.2; update3D(); };
-
-    // 3. 인터랙션 (원본 유지)
-    aboutBtn.onclick = () => aboutOverlay.style.display = aboutOverlay.style.display === 'block' ? 'none' : 'block';
-    eraMenuBtn.onclick = () => eraList.style.display = eraList.style.display === 'flex' ? 'none' : 'flex';
+  <div id="indexOverlay" class="index-overlay">
+  <div class="index-container">
+    <div class="index-header">
+      <span class="index-title">ARCHIVE INDEX</span>
+      <span class="index-close" id="indexCloseBtn">&times;</span>
+    </div>
     
-    document.querySelectorAll('.era-list li').forEach(li => {
-      li.onclick = () => {
-        const target = li.getAttribute('data-target');
-        document.querySelectorAll('.era-list li').forEach(i => i.classList.remove('active'));
-        li.classList.add('active');
-        if(target === 'all') {
-          world.classList.remove('focus-mode');
-          layers.forEach(l => l.classList.remove('highlight'));
-        } else {
-          world.classList.add('focus-mode');
-          layers.forEach(l => l.classList.toggle('highlight', l.id === target));
-        }
+    <!-- Firebase 데이터가 여기에 카드로 생성됩니다 -->
+    <div id="indexGrid" class="index-grid"></div>
+    
+    <div class="index-footer">
+      <span>BILAN (1/1)</span>
+      <span>LIST</span>
+      <span id="currentTimeDisplay">00.00-00.00.0000</span>
+    </div>
+  </div>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore-compat.js"></script>
+
+ <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const firebaseConfig = {
+        apiKey: "AIzaSyC-U2yBTcggU2XT6a8ufAR2rQrGCnUq8rw",
+        authDomain: "angel-orbit.firebaseapp.com",
+        projectId: "angel-orbit",
+        storageBucket: "angel-orbit.firebasestorage.app",
+        messagingSenderId: "556072347425",
+        appId: "1:556072347425:web:7247db6925f3309fe18060"
       };
-    });
 
-    // 4. 정보 패널 (원본 유지)
-    function showInfo(item) {
-      const d = {
-        n: item.getAttribute('data-name') || "UNNAMED OBJECT",
-        dt: item.getAttribute('data-date') || "ERA DATA PENDING",
-        l: item.getAttribute('data-loc') || "N/A",
-        m: item.getAttribute('data-mat') || "N/A",
-        s: item.getAttribute('data-size') || "N/A"
+      firebase.initializeApp(firebaseConfig);
+
+      const storage = firebase.storage();
+      const db = firebase.firestore();
+
+      const root = document.documentElement;
+      const world = document.getElementById('world');
+      const layers = document.querySelectorAll('.orbit-layer');
+      const scene = document.getElementById('scene');
+      const infoPanel = document.getElementById('infoPanel');
+      const aboutBtn = document.getElementById('aboutBtn');
+      const aboutOverlay = document.getElementById('aboutOverlay');
+      const uploadBtn = document.getElementById('uploadBtn');
+      const uploadModal = document.getElementById('uploadModal');
+      const closeModal = document.querySelector('.close-modal');
+      const eraMenuBtn = document.getElementById('eraMenuBtn');
+      const eraList = document.getElementById('eraList');
+      const zoomInBtn = document.getElementById('zoomIn');
+      const zoomOutBtn = document.getElementById('zoomOut');
+      const dropArea = document.getElementById('drop-area');
+      const fileInput = document.getElementById('fileInput');
+      const statusText = document.getElementById('status-text');
+      const previewImg = document.getElementById('preview-img');
+      const detailOverlay = document.getElementById('detailOverlay');
+      const detailClose = document.getElementById('detailClose');
+
+      const indexOpenBtn = document.getElementById('indexOpenBtn');
+      const indexOverlay = document.getElementById('indexOverlay');
+      const indexCloseBtn = document.getElementById('indexCloseBtn');
+      const indexGrid = document.getElementById('indexGrid');
+
+      const eraData = {
+        layer1: { name: "Ancient", concept: "Transcendental", reason: "비인간적 비례, 기하학적 형상, 압도적 크기 및 하이브리드된 도상이 고대 양식의 초월적 특성을 증명합니다." },
+        layer3: { name: "Early Medieval", concept: "Symbolic", reason: "평면성, 대칭적 구도, 정보의 아이콘화 및 선명한 윤곽선이 초기 중세의 상징적 도상학을 나타냅니다." },
+        layer5: { name: "Romanesque", concept: "Monolithic", reason: "묵직한 물성, 부동의 자세, 엄숙하고 투박한 표정이 로마네스크의 수호적 부도성을 보여줍니다." },
+        layer2: { name: "Gothic Medieval", concept: "Ethereal", reason: "유려한 곡선, 빛의 찬란함, 빛의 투과 효과 및 수직적 상승 구도가 고딕의 화려한 미학을 반영합니다." },
+        layer4: { name: "Renaissance", concept: "Humanistic", reason: "해부학적으로 완벽한 인체, 친근한 미소, 정서적 교감이 인본주의적 이상 세계를 형상화합니다." },
+        layer6: { name: "Modern", concept: "Deconstructed", reason: "심리적 투영과 형상의 해체, 파편화된 구도가 현대 예술의 해체주의적 관점을 드러냅니다." }
       };
-      infoPanel.innerHTML = `
-        <span class="index-num">DATA COMPONENT</span>
-        <h4 class="popup-title">${d.n.toUpperCase()}</h4>
-        <p class="popup-concept">${d.dt}</p>
-        <div class="popup-divider"></div>
-        <div class="detail-item"><span class="detail-label">Origin</span><span class="detail-value">${d.l}</span></div>
-        <div class="detail-item"><span class="detail-label">Material</span><span class="detail-value">${d.m}</span></div>
-        <div class="detail-item"><span class="detail-label">Scale</span><span class="detail-value highlight-value">${d.s}</span></div>
-      `;
-      infoPanel.classList.add('active');
-    }
 
-    function bindEvents(item) {
-      item.onmouseenter = () => showInfo(item);
-      item.onmouseleave = () => infoPanel.classList.remove('active');
-    }
-    document.querySelectorAll('.orbit-item').forEach(bindEvents);
+      let zoom = 1;
+      let rotateX = 15;
+      let rotateY = 0;
+      let isDragging = false;
+      let prevX, prevY;
 
-    // 5. 드래그/줌 제어 (핀치줌 대응 원본 유지)
-    scene.onpointerdown = (e) => {
-      if(e.target.closest('.controls, .top-nav, .side-panel, .modal, .about-overlay')) return;
-      isDragging = true; prevX = e.clientX; prevY = e.clientY;
-    };
-    window.onpointermove = (e) => {
-      if(!isDragging) return;
-      rotateY += (e.clientX - prevX) * 0.25; rotateX -= (e.clientY - prevY) * 0.25;
-      update3D(); prevX = e.clientX; prevY = e.clientY;
-    };
-    window.onpointerup = () => isDragging = false;
-    window.onwheel = (e) => {
-      if(!e.target.closest('.about-overlay, .modal-content')) {
-        const delta = e.ctrlKey ? -e.deltaY * 0.01 : e.deltaY * -0.001;
-        zoom += delta;
+      function update3D() {
+        zoom = Math.min(Math.max(zoom, 0.4), 3.5);
+        root.style.setProperty('--zoom', zoom);
+        root.style.setProperty('--rotateX', `${rotateX}deg`);
+        root.style.setProperty('--rotateY', `${rotateY}deg`);
+      }
+
+      if (zoomInBtn) { zoomInBtn.onclick = () => { zoom += 0.2; update3D(); }; }
+      if (zoomOutBtn) { zoomOutBtn.onclick = () => { zoom -= 0.2; update3D(); }; }
+
+      scene.onpointerdown = (e) => {
+        if (e.target.closest('.controls, .top-nav, .side-panel, .modal, .about-overlay, #detailOverlay')) return;
+        isDragging = true;
+        prevX = e.clientX; prevY = e.clientY;
+      };
+
+      window.onpointermove = (e) => {
+        if (!isDragging) return;
+        rotateY += (e.clientX - prevX) * 0.25;
+        rotateX -= (e.clientY - prevY) * 0.25;
         update3D();
-      }
-    };
-
-    // 6. 업로드 및 스캔 인터렉션
-    const dropArea = document.getElementById('drop-area');
-    const fileInput = document.getElementById('fileInput');
-    const statusText = document.getElementById('status-text');
-    const previewImg = document.getElementById('preview-img');
-
-    let pendingScanResult = null; 
-
-    uploadBtn.onclick = () => { uploadModal.style.display = "block"; };
-    
-    closeModal.onclick = () => {
-      if (pendingScanResult) {
-        addAngelToWorld(pendingScanResult.src, pendingScanResult.eraId, pendingScanResult.meta);
-        pendingScanResult = null;
-      }
-      uploadModal.style.display = "none";
-      resetModal();
-    };
-
-    dropArea.onclick = () => fileInput.click();
-    fileInput.onchange = (e) => handleFiles(e.target.files);
-
-    function handleFiles(files) {
-      if(!files[0]) return;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        previewImg.src = e.target.result;
-        previewImg.style.display = "block";
-        document.getElementById('drop-text').style.display = "none";
-        startScan();
+        prevX = e.clientX; prevY = e.clientY;
       };
-      reader.readAsDataURL(files[0]);
-    }
 
-    async function startScan() {
-      dropArea.classList.add('is-scanning'); 
-      previewImg.classList.add('x-ray-active'); // 스캔 효과 활성화
-      
-      statusText.innerHTML = `<div style="font-size:8px; opacity:0.5; text-align:center; letter-spacing:1px;">X-RAY CAPTURING...</div>`;
-      
-      await new Promise(r => setTimeout(r, 4000)); 
-      
-      const eraKeys = Object.keys(eraData);
-      const randomEra = eraKeys[Math.floor(Math.random() * eraKeys.length)];
-      const meta = eraData[randomEra];
+      window.onpointerup = () => { isDragging = false; };
 
-      previewImg.classList.remove('x-ray-active'); // 효과 종료
-      
-      statusText.innerHTML = `
-        <div class="scan-result-container">
-          <div class="scan-result-header">SCAN COMPLETE: CLASSIFICATION</div>
+      let infoTimeout = null;
+
+      if (detailClose) {
+        detailClose.onclick = (e) => { e.stopPropagation(); detailOverlay.style.display = 'none'; };
+      }
+
+      if (detailOverlay) {
+        detailOverlay.onclick = (e) => { if (e.target === detailOverlay) detailOverlay.style.display = 'none'; };
+      }
+
+      function showInfo(item) {
+        if (infoTimeout) clearTimeout(infoTimeout);
+        const imgEl = item.querySelector('img');
+        const d = {
+          title: item.getAttribute('data-title') || "UNTITLED",
+          type: item.getAttribute('data-type') || "데이터가 없습니다.",
+          wing: item.getAttribute('data-wing') || "UNKNOWN WING",
+          artist: item.getAttribute('data-artist') || "UNKNOWN",
+          year: item.getAttribute('data-year') || "UNKNOWN",
+          place: item.getAttribute('data-place') || "UNKNOWN",
+          background: item.getAttribute('data-background') || "데이터가 없습니다.",
+          concept: item.getAttribute('data-concept') || "ERA DATA PENDING",
+          src: imgEl ? imgEl.src : ""
+        };
+
+        infoPanel.innerHTML = `
+          <span class="index-num">DATA COMPONENT</span>
+          <h4 class="popup-title">${d.title.toUpperCase()}</h4>
+          <p class="popup-concept">${d.concept}</p>
+          <div class="popup-divider"></div>
+          <div class="detail-item"><span class="detail-label">Type</span><span class="detail-value">${d.type}</span></div>
+          <div class="detail-item"><span class="detail-label">Wing</span><span class="detail-value">${d.wing}</span></div>
+          <div class="detail-item"><span class="detail-label">Year</span><span class="detail-value">${d.year}</span></div>
+          <div class="detail-item"><span class="detail-label">Place</span><span class="detail-value highlight-value">${d.place}</span></div>
+          <button class="view-detail-btn" id="viewDetailBtn">VIEW DETAIL</button>
+        `;
+
+        infoPanel.classList.add('active');
+        const btn = document.getElementById('viewDetailBtn');
+        if (btn) {
+          btn.onclick = (e) => {
+            e.stopPropagation();
+            if (infoTimeout) clearTimeout(infoTimeout);
+            document.getElementById('detailImg').src = d.src;
+            document.getElementById('detailTitle').innerText = d.title.toUpperCase();
+            document.getElementById('detailArtist').innerText = d.artist;
+            document.getElementById('detailYear').innerText = d.year;
+            document.getElementById('detailPlace').innerText = d.place;
+            document.getElementById('detailType').innerText = d.type;
+            document.getElementById('detailContext').innerText = d.background;
+            if (document.getElementById('detailWing')) document.getElementById('detailWing').innerText = d.wing;
+            detailOverlay.style.display = 'flex';
+            infoPanel.classList.remove('active');
+          };
+        }
+        infoPanel.onmouseenter = () => { if (infoTimeout) clearTimeout(infoTimeout); };
+        infoPanel.onmouseleave = () => hideInfoAfterDelay();
+      }
+
+      function hideInfoAfterDelay() {
+        const isDetailOpen = window.getComputedStyle(detailOverlay).display !== 'none';
+        if (!isDetailOpen) { infoTimeout = setTimeout(() => { infoPanel.classList.remove('active'); }, 2500); }
+      }
+
+      function bindEvents(item) {
+        item.onmouseenter = () => showInfo(item);
+        item.onmouseleave = () => hideInfoAfterDelay();
+      }
+
+      document.querySelectorAll('.orbit-item').forEach(bindEvents);
+
+      let pendingScanResult = null;
+      if (uploadBtn) { uploadBtn.onclick = () => { uploadModal.style.display = "block"; }; }
+      if (dropArea) { dropArea.onclick = () => fileInput.click(); }
+
+      if (fileInput) {
+        fileInput.onchange = (e) => {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            previewImg.src = ev.target.result;
+            previewImg.style.display = "block";
+            document.getElementById('drop-text').style.display = "none";
+            startScan();
+          };
+          reader.readAsDataURL(e.target.files[0]);
+        };
+      }
+
+      async function startScan() {
+        dropArea.classList.add('is-scanning');
+        previewImg.classList.add('x-ray-active');
+        statusText.innerText = "X-RAY CAPTURING...";
+        await new Promise(r => setTimeout(r, 3000));
+
+        const eraKeys = Object.keys(eraData);
+        const randomEra = eraKeys[Math.floor(Math.random() * eraKeys.length)];
+        const meta = { ...eraData[randomEra] };
+
+        previewImg.classList.remove('x-ray-active');
+        statusText.innerHTML = `
           <div class="scan-result-title">${meta.name.toUpperCase()}</div>
-          <div class="scan-result-concept">${meta.concept.toUpperCase()}</div>
           <div class="scan-result-reason">${meta.reason}</div>
-          <div class="scan-close-guide">[ PRESS X TO INTEGRATE INTO THE ORBIT ]</div>
-        </div>
-      `;
-      
-      pendingScanResult = { src: previewImg.src, eraId: randomEra, meta: meta };
-      dropArea.classList.remove('is-scanning');
-    }
+        `;
+        document.getElementById('upload-inputs').style.display = "block";
+        pendingScanResult = { src: previewImg.src, eraId: randomEra, meta: meta };
+        dropArea.classList.remove('is-scanning');
+      }
 
-    // [궤도 배치 수정] 이미지가 정중앙이 아닌 실제 궤도 라인 위에 뿌려지도록 함
-    function addAngelToWorld(src, eraId, meta) {
-      const orbit = document.querySelector(`#${eraId} .orbit-content`);
-      if(!orbit) return;
-      
-      const newItem = document.createElement('div');
-      newItem.className = 'orbit-item';
+      if (closeModal) {
+        closeModal.onclick = async () => {
+          if (pendingScanResult) {
+            document.querySelectorAll('.scan-input').forEach(el => el.style.display = 'none');
+            const guideEl = document.querySelector('.scan-close-guide');
+            if (guideEl) guideEl.style.display = 'none';
 
-      // 궤도 반지름(radius)을 45% 내외로 설정하여 궤도 경로(orbit-path)와 일치시킴
-      const angle = Math.random() * Math.PI * 2; 
-      const radius = 42 + Math.random() * 6; // 궤도 라인 주변으로 미세한 오차 부여
-      
-      const x = 50 + radius * Math.cos(angle);
-      const y = 50 + radius * Math.sin(angle);
+            const loadingContainer = document.getElementById('loading-container');
+            if (loadingContainer) {
+              loadingContainer.style.display = 'flex';
+            }
 
-      newItem.style.setProperty('--x', `${x}%`);
-      newItem.style.setProperty('--y', `${y}%`);
-      
-      newItem.setAttribute('data-name', `SCAN: ${meta.name}`);
-      newItem.setAttribute('data-date', meta.concept);
-      newItem.setAttribute('data-loc', 'DIGITAL ARCHIVE');
-      newItem.setAttribute('data-mat', 'PIXEL DATA');
-      newItem.setAttribute('data-size', 'VARIABLE');
-      
-      const img = document.createElement('img');
-      img.src = src;
-      newItem.appendChild(img);
-      
-      bindEvents(newItem); 
-      orbit.appendChild(newItem);
-    }
+            pendingScanResult.meta.title = document.getElementById('input-title').value || "UNTITLED";
+            pendingScanResult.meta.type = document.getElementById('input-type').value || "UNKNOWN TYPE";
+            pendingScanResult.meta.artist = document.getElementById('input-artist').value || "UNKNOWN ARTIST";
+            pendingScanResult.meta.year = document.getElementById('input-year').value || "UNKNOWN YEAR";
+            pendingScanResult.meta.place = document.getElementById('input-place').value || "UNKNOWN LOCATION";
+            pendingScanResult.meta.background = document.getElementById('input-context').value || "No additional context provided.";
+            pendingScanResult.meta.wing = "SCANNED DATA";
 
-    function resetModal() {
-      dropArea.classList.remove('is-scanning');
-      previewImg.classList.remove('x-ray-active'); 
-      previewImg.style.display = "none";
-      document.getElementById('drop-text').style.display = "block";
-      statusText.innerHTML = "";
-      fileInput.value = "";
-    }
+            await addAngelToWorld(
+              pendingScanResult.src,
+              pendingScanResult.eraId,
+              pendingScanResult.meta,
+              true
+            );
 
-    update3D();
-});
+            await new Promise(r => setTimeout(r, 3000));
+            pendingScanResult = null;
+          }
+
+          uploadModal.style.display = "none";
+          resetModal();
+        };
+      }
+
+      async function addAngelToWorld(src, eraId, meta, shouldSave = true) {
+        const orbit = document.querySelector(`#${eraId} .orbit-content`);
+        let finalSrc = src;
+        
+        let angle = meta.angle !== undefined ? meta.angle : Math.random() * Math.PI * 2;
+        let radius = meta.radius !== undefined ? meta.radius : (42 + Math.random() * 8);
+
+        if (orbit && shouldSave) {
+          const storageRef = storage.ref(`angels/${Date.now()}.jpg`);
+          const uploadTask = await storageRef.putString(src, 'data_url');
+          finalSrc = await uploadTask.ref.getDownloadURL();
+
+          await db.collection("angels").add({
+            src: finalSrc, 
+            eraId, 
+            meta: { ...meta, angle, radius },
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        }
+
+        if (orbit) {
+          const newItem = document.createElement('div');
+          newItem.className = 'orbit-item' + (shouldSave ? ' new-angel-focus' : '');
+          newItem.style.setProperty('--x', `${50 + radius * Math.cos(angle)}%`);
+          newItem.style.setProperty('--y', `${50 + radius * Math.sin(angle)}%`);
+          newItem.style.zIndex = document.querySelectorAll('.orbit-item').length + 1;
+          
+          const attrs = ['title', 'type', 'wing', 'artist', 'year', 'place', 'background', 'concept'];
+          attrs.forEach(a => { newItem.setAttribute(`data-${a}`, meta[a] || ""); });
+
+          const img = document.createElement('img');
+          img.src = finalSrc;
+          newItem.appendChild(img);
+          bindEvents(newItem);
+          orbit.appendChild(newItem);
+
+          if (shouldSave) {
+            setTimeout(() => {
+              newItem.classList.remove('new-angel-focus');
+            }, 10000); 
+          }
+        }
+      }
+
+      async function loadSavedAngels() {
+        const snap = await db.collection("angels").orderBy("createdAt", "asc").get();
+        snap.forEach(doc => { addAngelToWorld(doc.data().src, doc.data().eraId, doc.data().meta, false); });
+      }
+
+      function resetModal() {
+        previewImg.style.display = "none";
+        document.getElementById('drop-text').style.display = "block";
+        document.getElementById('upload-inputs').style.display = "none";
+        document.querySelectorAll('.scan-input').forEach(el => {
+          el.style.display = 'block';
+          el.value = "";
+        });
+        const guideEl = document.querySelector('.scan-close-guide');
+        if (guideEl) guideEl.style.display = 'block';
+        const loadingContainer = document.getElementById('loading-container');
+        if (loadingContainer) loadingContainer.style.display = 'none';
+        statusText.innerText = "Ready to scan...";
+      }
+
+      if (aboutBtn) { aboutBtn.onclick = () => { aboutOverlay.style.display = aboutOverlay.style.display === 'block' ? 'none' : 'block'; }; }
+
+      document.querySelectorAll('.era-list li').forEach(li => {
+        li.onclick = () => {
+          const target = li.getAttribute('data-target');
+          document.querySelectorAll('.era-list li').forEach(i => { i.classList.remove('active'); });
+          li.classList.add('active');
+          if (target === 'all') {
+            world.classList.remove('focus-mode');
+            layers.forEach(l => { l.classList.remove('highlight', 'paused'); });
+          } else {
+            world.classList.add('focus-mode');
+            layers.forEach(l => { const isT = l.id === target; l.classList.toggle('highlight', isT); l.classList.toggle('paused', isT); });
+          }
+        };
+      });
+
+      if (indexOpenBtn) {
+        indexOpenBtn.onclick = () => {
+          renderIndex();
+          indexOverlay.style.display = 'block';
+        };
+      }
+
+      if (indexCloseBtn) {
+        indexCloseBtn.onclick = () => {
+          indexOverlay.style.display = 'none';
+        };
+      }
+
+      async function renderIndex() {
+        indexGrid.innerHTML = '<div style="color:#000; padding:20px; grid-column: 1/-1; text-align:center;">LOADING ARCHIVE...</div>';
+
+        try {
+          const snapshot = await db.collection("angels").orderBy("createdAt", "desc").get();
+          indexGrid.innerHTML = ''; 
+
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            const meta = data.meta || {};
+            
+            const date = data.createdAt ? new Date(data.createdAt.seconds * 1000) : new Date();
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            const seconds = date.getSeconds().toString().padStart(2, '0');
+
+            const timeLabel = `#${month}${day} ${hours}:${minutes}:${seconds}`;
+            
+            const item = document.createElement('div');
+            item.className = 'index-item';
+            
+            // 📌 [수정 부분] 참조 이미지 디자인을 위한 HTML 구조 변경
+            item.innerHTML = `
+              <div class="index-number">${timeLabel}</div>
+              <div class="index-img-box">
+                <img src="${data.src}" alt="${meta.title}">
+              </div>
+              <div class="index-item-footer">
+                <!-- 왼쪽 정렬: 제목 -->
+                <span class="footer-title">${(meta.title || "UNTITLED").toUpperCase()}</span>
+                <!-- 오른쪽 정렬: 아티스트/별명 -->
+                <span class="footer-artist">${(meta.artist || "ANONYMOUS").toUpperCase()}</span>
+              </div>
+              `;
+            
+            item.onclick = () => {
+              document.getElementById('detailImg').src = data.src;
+              document.getElementById('detailTitle').innerText = (meta.title || "UNTITLED").toUpperCase();
+              document.getElementById('detailArtist').innerText = meta.artist || "UNKNOWN";
+              document.getElementById('detailYear').innerText = meta.year || "UNKNOWN";
+              document.getElementById('detailPlace').innerText = meta.place || "UNKNOWN";
+              document.getElementById('detailType').innerText = meta.type || "데이터가 없습니다.";
+              document.getElementById('detailContext').innerText = meta.background || "데이터가 없습니다.";
+              if (document.getElementById('detailWing')) document.getElementById('detailWing').innerText = meta.wing || "";
+              
+              detailOverlay.style.display = 'flex';
+            };
+
+            indexGrid.appendChild(item);
+          });
+        } catch (error) {
+          console.error("Index load error:", error);
+          indexGrid.innerHTML = '<div style="grid-column: 1/-1; text-align:center;">FAILED TO LOAD DATA.</div>';
+        }
+      }
+
+      update3D();
+      loadSavedAngels();
+    });
 </script>
 </body>
 </html>
