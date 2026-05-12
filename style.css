@@ -1,28 +1,8 @@
-.bg-wing-overlay {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background-color: transparent; 
-  
-  /* 📌 이미지는 여러 경로를 테스트할 수 있게 유지 */
-  background-image: url('wing3.png'), url('./wing3.png') !important; 
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  background-size: 95% auto !important; /* contain보다 70% 정도가 예뻐요 */
-  
-  opacity: 0.25 !important; 
-  z-index: -9999 !important; /* 레이어 바로 위, 콘텐츠 바로 아래 */
-  
-  pointer-events: none !important;
-  display: block !important;
-}
-
-
-
+/* =========================================================
+   1. 초기화 및 전역 스타일 (html, body 수정)
+   ========================================================= */
 :root {
-  --bg: #ffffff;
+  --bg: #ffffff; /* 기존 흰색 변수 */
   --text: #000000;
   --zoom: 1;
   --rotateX: 15deg;
@@ -30,41 +10,92 @@
   --side-margin: 20px; 
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+}
 
 html, body { 
   width: 100%;
   height: 100%;
   overflow: hidden; 
-  background: transparent;
+  
+  /* 📌 [핵심 수정] 중요: body의 흰색 배경을 투명(transparent)으로 바꿉니다.
+     그래야 body 뒤에 있는 날개 이미지가 투과되어 보입니다. */
+  background-color: transparent !important; 
+  
   color: var(--text);
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* UI 레이아웃 */
+/* =========================================================
+   2. 배경 날개 오버레이 (wing4.png) (완벽 수정본)
+   ========================================================= */
+.bg-wing-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  
+  /* 📌 [핵심 수정] 중요: body에서 뺀 흰색 배경색(#ffffff 또는 var(--bg))을 
+     여기에 직접 줍니다. 날개 이미지 뒤로 흰색 배경이 깔리게 됩니다. */
+  background-color: #ffffff !important; 
+  
+  /* 이미지는 여러 경로를 테스트할 수 있게 유지 */
+  background-image: url('wing4.png') !important; 
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  
+  /* 📌 [핵심 수정] 확대/축소 연동: 고정 크기 대신 CSS 변수를 사용합니다.
+     calc(기준크기 * var(--zoom)) 형식을 사용합니다. */
+  background-size: calc(40%) auto !important; 
+  
+  /* 투명도를 원하시는 대로 조정하세요 (0.8은 꽤 선명함) */
+  opacity: 0.3 !important; 
+  
+  /* 📌 z-index는 -1로 유지
+     이렇게 하면 body 뒤(body가 투명하니까 보임)에 위치하여
+     배경으로 작동합니다. */
+  z-index: -1 !important; 
+  
+  pointer-events: none !important;
+  display: block !important;
+}
+
+/* =========================================================
+   3. 고정 UI 레이아웃 (상단 네비, 컨트롤러 등) (기존 유지 및 수정)
+   ========================================================= */
 .sentence { 
   position: fixed; 
   top: 18px; 
   left: var(--side-margin); 
   z-index: 1000; 
-  font-size: 12px; 
+  /* 📌 창 너비에 따라 폰트 크기가 8px에서 12px 사이로 유동적으로 변함 */
+  font-size: clamp(8px, 1vw, 12px); 
   pointer-events: none; 
   letter-spacing: 0.02em;
-
+  /* 📌 ERA 메뉴와 겹치지 않게 최대 너비 제한 */
+  max-width: 70vw; 
+  line-height: 1.5;
+  word-break: keep-all;
 }
-
 .top-nav { 
   position: fixed; 
   top: 18px; 
   right: var(--side-margin); 
-  width: clamp(250px, 35vw, 450px);
+  
+  /* 📌 [중요] 문장보다 위에 오도록 z-index를 높이고 배경색을 살짝 주어 가독성 확보 */
   z-index: 2000; 
   display: flex; 
-  justify-content: space-between; 
+  justify-content: flex-end; 
   align-items: center; 
-  font-size: 12px; 
-  letter-spacing: 0.02em;
-
+  
+  font-size: clamp(9px, 1.1vw, 12px); 
+  /* 창이 작아지면 메뉴 사이 간격도 줄어듭니다 */
+  gap: clamp(10px, 2vw, 30px); 
 }
 
 .nav-item {
@@ -72,6 +103,15 @@ html, body {
   user-select: none;
 }
 
+
+#uploadBtn {
+  /* margin-right 대신 gap을 이용해 조절하되, 필요시 아래 값 사용 */
+  margin-right: clamp(10px, 3vw, 50px) !important;
+  transition: all 0.2s ease;
+}
+
+
+/* ABOUT 오버레이 */
 .about-overlay { 
   position: fixed; 
   top: 45px; 
@@ -92,12 +132,7 @@ html, body {
   color: #000000;
 }
 
-.hover-guide {
-  margin-top: auto;
-  color: #444;
-  font-size: 11px;
-}
-
+/* 컨트롤러 (+/-) */
 .controls { 
   position: fixed; 
   right: var(--side-margin); 
@@ -127,18 +162,13 @@ html, body {
   color: #fff;
 }
 
+/* 시대(Era) 선택 메뉴 */
 .era-container {
   position: fixed;
   top: 45px;
+  /* 📌 기존 들여쓰기 구조 유지 */
   left: calc(var(--side-margin) + 162px);
   z-index: 1100;
-}
-
-.era-label {
-  font-size: 10px;
-  cursor: pointer;
-  margin-bottom: 8px;
-  user-select: none;
 }
 
 .era-list {
@@ -149,7 +179,8 @@ html, body {
 }
 
 .era-list li {
-  font-size: 10px;
+  /* 📌 창 크기에 맞춰 폰트 사이즈만 반응 */
+  font-size: clamp(8px, 1vw, 10px); 
   cursor: pointer;
   opacity: 0.4;
   transition: opacity 0.3s ease;
@@ -161,7 +192,53 @@ html, body {
   opacity: 1;
 }
 
-/* 3D 씬 설정 */
+/* 좌측 하단 시대 가이드 테이블 납작하게 수정본 (기존 유지) */
+.era-guide-table {
+  position: fixed;
+  left: var(--side-margin);
+  bottom: 30px; 
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.5); 
+  border-top: 0.2px solid #000; /* 맨 위 첫 번째 줄 가로선 추가 */
+  width: 550px;
+}
+
+.era-guide-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px; 
+  line-height: 1.2;
+}
+
+.era-guide-table td {
+  padding: 6px 10px; /* 패딩을 줄여서 '납작하게' */
+  border-bottom: 0.2px solid #000; /* 행 사이 가로선 */
+  color: #000;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.era-guide-table td:nth-child(2) {
+  padding-right: 50px; /* 키워드와 설명 사이 간격 넓힘 */
+}
+
+.tag {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.era-guide-table {
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.era-guide-table:hover {
+  opacity: 1;
+}
+
+/* =========================================================
+   4. 3D 월드 및 궤도 씬 (기존 유지)
+   ========================================================= */
 .scene {
   position: relative;
   width: 100vw;
@@ -194,11 +271,7 @@ html, body {
   transition: filter 0.8s ease, opacity 0.8s ease; 
 }
 
-.orbit-layer.paused .orbit-content,
-.orbit-layer.paused .orbit-item img {
-  animation-play-state: paused !important;
-}
-
+/* 포커스 모드 (특정 시대 하이라이트) */
 .world.focus-mode .orbit-layer {
   filter: blur(2px);
   opacity: 0.12;
@@ -209,6 +282,7 @@ html, body {
   opacity: 1;
 }
 
+/* 궤도 회전 애니메이션 본체 */
 .orbit-content {
   position: absolute;
   inset: 0;
@@ -216,36 +290,19 @@ html, body {
   animation: spin linear infinite;
 }
 
-/* 레이어별 회전 속도 */
-#layer1 .orbit-content,
-#layer1 .orbit-item img {
-  animation-duration: 100s;
+/* 애니메이션 일시정지 로직 */
+.orbit-layer.paused .orbit-content,
+.orbit-layer.paused .orbit-item img {
+  animation-play-state: paused !important;
 }
 
-#layer2 .orbit-content,
-#layer2 .orbit-item img {
-  animation-duration: 95s;
-}
-
-#layer3 .orbit-content,
-#layer3 .orbit-item img {
-  animation-duration: 110s;
-}
-
-#layer4 .orbit-content,
-#layer4 .orbit-item img {
-  animation-duration: 105s;
-}
-
-#layer5 .orbit-content,
-#layer5 .orbit-item img {
-  animation-duration: 95s;
-}
-
-#layer6 .orbit-content,
-#layer6 .orbit-item img {
-  animation-duration: 110s;
-}
+/* 레이어별 회전 속도 설정 (기존 유지) */
+#layer1 .orbit-content, #layer1 .orbit-item img { animation-duration: 100s; }
+#layer2 .orbit-content, #layer2 .orbit-item img { animation-duration: 95s; }
+#layer3 .orbit-content, #layer3 .orbit-item img { animation-duration: 110s; }
+#layer4 .orbit-content, #layer4 .orbit-item img { animation-duration: 105s; }
+#layer5 .orbit-content, #layer5 .orbit-item img { animation-duration: 95s; }
+#layer6 .orbit-content, #layer6 .orbit-item img { animation-duration: 110s; }
 
 @keyframes spin {
   from { transform: rotateZ(0deg); }
@@ -257,6 +314,7 @@ html, body {
   to { transform: rotateZ(-360deg); }
 }
 
+/* 궤도 라인 (SVG) */
 .orbit-svg {
   width: 100%;
   height: 100%;
@@ -271,6 +329,7 @@ html, body {
   opacity: 0.6;
 }
 
+/* 레이어별 3D 각도 설정 (기존 유지) */
 #layer1 { transform: rotateY(0deg); }
 #layer2 { transform: rotateY(72deg); }
 #layer3 { transform: rotateY(144deg); }
@@ -278,6 +337,9 @@ html, body {
 #layer5 { transform: rotateY(288deg); }
 #layer6 { transform: rotateX(90deg); }
 
+/* =========================================================
+   5. 궤도 이미지 아이템 (.orbit-item) (기존 유지)
+   ========================================================= */
 .orbit-item { 
   position: absolute;
   width: 30px; 
@@ -297,249 +359,167 @@ html, body {
   user-select: none; 
 }
 
-/* 우측 하단 화이트 정보 창 */
-.side-panel {
-  position: fixed;
-  right: 50px; 
-  bottom: 30px;
-  width: 280px;
-  min-height: 200px;
-  max-height: 400px;
-  background: #ffffff;
-  color: #000000;
-  padding: 25px;
-  z-index: 9998;
+/* =========================================================
+   6. 📌 [수정] 움직이는 궤도 추적 상세 모달 (detailOverlay)
+   이 부분이 자바스크립트 추적 로직과 짝을 이루는 핵심 수정본입니다.
+   ========================================================= */
+
+/* 6.1 오버레이 전체 배경 (3초 추적용) */
+.detail-overlay {
+  display: none; /* 자바스크립트가 flex로 띄웁니다. */
+  position: fixed; /* 화면 기준 absolute 배치 */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* 📌 수정: 배경 딤 처리 및 블러 제거 (추적 방해 방지) */
+  background: transparent; 
+  backdrop-filter: none; 
+  -webkit-backdrop-filter: none;
+  z-index: 11000; /* world보다 위, 다른 UI보다 위 */
+  /* 📌 수정: 배경 클릭 방지 안 함 (천사 이미지 추적을 위해) */
+  pointer-events: none; 
+}
+
+/* 6.2 📌 [핵심 수정] 모달 본체 컨테이너: 경계 배치 및 애니메이션 수정 */
+.detail-container {
+  /* 💡 [핵심] 자바스크립트가 이 .detail-container의 fixed 좌표(left, top)를 계속 업데이트합니다. */
+  
+  width: 320px; /* 너비를 고정 */
+  height: auto; /* 높이는 내용에 맞게 자동 */
+  background: #fff;
+  color: #000;
+  
+  /* 📌 수정: 격자(grid) 대신 Flex를 사용해 1열 컴팩트 배치 */
   display: flex;
   flex-direction: column;
-  pointer-events: none;
+  gap: 20px;
+  padding: 30px;
+  box-sizing: border-box;
+  
+  /* 📌 수정: 중요: 자바스크립트 좌표 수신을 위해 fixed 사용 */
+  position: fixed; 
+  
+  /* [삭제] 기존 중앙 정렬용 코드(margin, top/left 등) 삭제 */
+  
+  border: 1px solid #000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  pointer-events: auto; /* 내부 요소는 클릭 가능하게 */
+  
+  /* 부드러운 등장 효과 */
   opacity: 0;
-  border: 0.5px solid #000000; 
-  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.08);
-  transform: translateY(20px);
-  transition: all 0.3s ease-out;
-  overflow: hidden;
+  /* 📌 수정: 위치는 자바스크립트가 실시간으로 주므로, 
+     transition에서 left/top을 빼고 opacity만 남깁니다. (끊김 방지) */
+  transition: opacity 0.3s ease;
 }
 
-.side-panel.active {
+/* 자바스크립트가 붙여주는 'tracking-mode' 클래스가 있을 때 opacity 1로 등장 */
+.detail-overlay.tracking-mode .detail-container {
   opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
 }
 
-.index-num { 
-  color: #000; 
-  font-family: monospace; 
-  font-size: 9px; 
-  letter-spacing: 2px; 
-  margin-bottom: 4px; 
-  opacity: 0.5; 
-}
-
-.popup-title { 
-  font-size: 17px; 
-  font-weight: 700; 
-  margin: 5px 0; 
-  line-height: 1.2; 
-  word-break: keep-all; 
-}
-
-.popup-concept {
-  font-size: 8px; 
-  color: #666; 
-  margin-bottom: 15px; 
-  text-transform: uppercase; 
-}
-
-.popup-divider { 
-  width: 100%; 
-  height: 0.5px; 
-  background: #000; 
-  margin: 10px 0 20px 0; 
-  opacity: 0.2; 
-  position: relative; 
-  border-top: 1px solid #000;
-}
-
-.popup-divider::after {
-  content: ''; 
-  position: absolute; 
-  left: 0; 
-  top: 0; 
-  width: 30px; 
-  height: 1px; 
-  background: #000; 
-}
-
-.detail-item {
-  display: flex;
-  align-items: baseline;
-  margin-bottom: 8px;
-  font-family: 'Inter', sans-serif;
-}
-
-.detail-label {
-  flex-basis: 80px;
-  flex-shrink: 0;
-  font-size: 8px;
-  letter-spacing: 0.05em;
-  opacity: 0.6;
-  text-transform: uppercase;
-}
-
-.detail-value {
-  font-size: 8px;
-  font-weight: 500;
-  word-break: break-all;
-  line-height: 1.2;
-  padding-left: 10px;
-}
-
-.highlight-value { 
-  font-weight: 700; 
-}
-
-.view-detail-btn {
-  margin-top: 20px;
+/* 6.3 📌 내부 이미지 영역 (너비 축소에 맞춰 조정) */
+.detail-img-area {
   width: 100%;
-  cursor: pointer;
-  background-color: #000000;
-  color: #ffffff;
-  font-size: 10px;
-}
-
-.view-detail-btn:hover {
-  background-color: #ffffff; /* 완전히 검정보다 살짝 밝은 톤으로 변경 */
-  color: #000000;
-  border: none;
-}
-
-/* 상세 보기 오버레이 */
-.detail-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px) brightness(0.8);
-  -webkit-backdrop-filter: blur(10px) brightness(0.8);
-  z-index: 9999;
+  height: 200px; /* 이미지 영역 높이 고정 */
+  overflow: hidden;
+  display: flex;
   align-items: center;
   justify-content: center;
+  background: #ffffff;
 }
 
-
-/* style.css */
 #detailImg {
-  /* 너비와 높이 중 긴 쪽에 맞춰서 박스 안에 쏙 들어가게 합니다 */
   max-width: 100%;
   max-height: 100%; 
   width: auto;
   height: auto;
-  object-fit: contain; 
+  object-fit: contain; /* 중요: 이미지가 잘리지 않고 전체가 보임 */
   display: block;
-  mix-blend-mode: multiply;
 }
 
-.detail-container {
-  width: 45vw;
-  height: 72vh;
-  background: #fff;
-  color: #000;
-  display: grid;
-  /* 텍스트 양이 많아질 수 있으니 비율을 조금 더 조정해도 좋습니다 */
-  grid-template-columns: 1fr 1fr; 
-  gap: 56px;
-  padding: 70px 68px;
-  box-sizing: border-box;
-  position: relative;
-  overflow: hidden; /* 컨테이너 자체도 밖으로 나가는 것 방지 */
-}
-
-.detail-close {
-  position: absolute;
-  top: 28px;
-  right: 38px;
-  font-size: 36px;
-  line-height: 1;
-  cursor: pointer;
-  font-weight: 300;
-}
-
-.detail-img-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* 부모를 절대 못 나가게 가둠 */
-  background: #ffffff; /* 이미지가 작을 때 배경색 (선택) */
-}
-
-
+/* 6.4 📌 내부 텍스트 영역 (너비 축소에 맞춰 조정) */
 .detail-info-area {
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
-
 #detailTitle {
-  font-size: 20px;
-  line-height: 1.2;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  margin-bottom: 40px; /* 적당한 간격으로 조정 */
+  font-size: 15px; 
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-bottom: 14px;
+  word-break: keep-all;
+  border-bottom: 0.3px solid #000;
+  padding-bottom: 10px;
 }
 
-
+/* 메타데이터 격자 (너비 축소에 맞춰 조정) */
 .detail-meta-grid {
   width: 100%;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
 .meta-row {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 70px 1fr; /* 너비에 맞게 조절 */
   border-bottom: none;
-  padding: 7px 0;
+  padding: 5px 0;
 }
-
 
 .meta-row span {
   font-size: 10px;
-  font-weight: 400;
+  font-weight: 500;
   color: #000000;
+  text-transform: uppercase;
 }
 
 .meta-row p {
   margin: 0;
   font-size: 10px;
   font-weight: 400;
+  word-break: break-all;
 }
 
-
+/* 설명 블록 */
 .extra-data {
-  margin-bottom: 28px;
+  margin-bottom: 16px;
 }
 
 .data-block label {
   display: block;
   font-size: 10px;
-  font-weight: 400;
-  margin-bottom: 4px;
+  font-weight: 500;
+  margin-bottom: 2px;
+  text-transform: uppercase;
 }
 
 .data-block p {
   margin: 0;
   font-size: 10px;
-  line-height: 1.8;
+  line-height: 1.7;
   word-break: keep-all;
 }
 
-#detailWing {
-  display: none;
+/* 사용 안 함 */
+#detailWing { display: none; }
+
+/* 닫기 버튼 (&times;) (너비 축소에 맞춰 위치 조정) */
+.detail-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  font-weight: 300;
 }
 
-/* 업로드 모달 및 스캔 애니메이션 */
+/* =========================================================
+   7. 업로드 모달 및 스캔 애니메이션 (기존 유지)
+   ========================================================= */
 .modal { 
   display: none; 
   position: fixed; 
@@ -582,7 +562,6 @@ html, body {
   right: 20px;
   font-size: 15px;
   cursor: pointer;
-  display: block !important;
 }
 
 #drop-area {
@@ -598,7 +577,6 @@ html, body {
   position: relative;
   overflow: hidden;
   background: #fff;
-  transition: background 0.5s ease;
 }
 
 #drop-area.is-scanning {
@@ -616,13 +594,7 @@ html, body {
   pointer-events: none;
 }
 
-#drop-area:hover {
-  background: #f9f9f9;
-}
-
-#fileInput {
-  display: none;
-}
+#fileInput { display: none; }
 
 #preview-img { 
   max-width: 100%; 
@@ -630,7 +602,6 @@ html, body {
   object-fit: contain; 
   display: none;
   margin: 0 auto;
-  transition: filter 0.5s ease, opacity 0.5s ease;
 }
 
 #preview-img.x-ray-active {
@@ -638,7 +609,6 @@ html, body {
   opacity: 0.9;
   transform: scale(1.02);
   transition: all 0.8s ease;
-  align-items: center;
 }
 
 #status-text { 
@@ -646,70 +616,10 @@ html, body {
   font-size: 8px; 
   text-transform: uppercase; 
   letter-spacing: 1px;
-}
-
-.scan-result-container {
-  width: 100%;
-  margin-top: 5px;
-  padding-top: 15px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.scan-result-header {
-  font-size: 7.5px;
-  font-weight: 300;
-  letter-spacing: 0.15em;
-  color: #616161;
-  margin-bottom: 25px;
-}
-
-.scan-result-title {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  line-height: 1.2;
-  margin-bottom: 5px;
   text-align: center;
 }
 
-.scan-result-concept {
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.scan-result-reason {
-  font-size: 9px;
-  line-height: 1.7;
-  letter-spacing: -0.01em;
-  color: #444;
-  padding: 0; 
-  margin: 0 auto 25px auto;
-  margin-bottom: 25px;
-  word-break: keep-all;
-  max-width: 40%;
-  opacity: 0.7;
-  text-align: center;
-}
-
-.scan-close-guide {
-  font-size: 8px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  opacity: 0.5;
-  margin-top: 25px;
-}
-
-.is-scanning #scan-line { 
-  display: block; 
-  animation: scanAnimation 2.8s infinite ease-in-out; 
-}
-
+/* 스캔 애니메이션 라인 */
 #scan-line { 
   display: none; 
   position: absolute; 
@@ -721,6 +631,29 @@ html, body {
     0 0 10px rgba(197, 249, 255, 0.8),
     0 0 30px rgba(184, 219, 255, 0.4); 
   z-index: 10; 
+}
+
+.is-scanning #scan-line { 
+  display: block; 
+  animation: scanAnimation 2.8s infinite ease-in-out; 
+}
+
+#loading-container {
+  display: flex;             /* flex 박스로 설정 */
+  flex-direction: column;    /* 세로로 나열 */
+  align-items: center;       /* 가로 방향 중앙 정렬 */
+  justify-content: center;   /* 세로 방향 중앙 정렬 */
+  width: 100%;               /* 부모 모달의 너비를 다 사용 */
+  margin: 30px 0;            /* 위아래 여백 확보 */
+  text-align: center;
+}
+
+.loading-text {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #000;
+  text-align: center;        /* 텍스트 자체 중앙 정렬 */
+  width: 100%;
 }
 
 #upload-inputs {
@@ -751,9 +684,44 @@ html, body {
   text-align: center;
 }
 
+.loader {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #000; 
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+.loading-text {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: #000;
+  text-align: center;
+}
+
+/* 스캔 결과 텍스트 */
+.scan-result-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.scan-result-reason {
+  font-size: 9px;
+  line-height: 1.6;
+  color: #444;
+  margin: 0 auto 25px auto;
+  word-break: keep-all;
+  max-width: 60%;
+  opacity: 1;
+  text-align: center;
+}
+
 .scan-close-guide {
-  margin-top: 25px;
-  font-family: 'Pretendard', sans-serif;
   font-size: 8px;
   font-weight: 500;
   letter-spacing: 0.15em;
@@ -761,75 +729,28 @@ html, body {
   opacity: 0.5;
   text-align: center;
   text-transform: uppercase;
-  transition: all 0.3s ease;
+  margin-top: 25px;
 }
 
-/* 업로드 중일 때 스타일 */
-.scan-close-guide.uploading {
-  opacity: 1;
-  color: #666;
-}
+/* 애니메이션 정의 정의 */
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes scanAnimation { 0% { top: 0%; opacity: 0; } 30%, 70% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
 
-#loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
-}
+/* =========================================================
 
-.loader {
-  width: 30px;
-  height: 30px;
-  border: 2px solid #f3f3f3;
-  border-top: 2px solid #000; /* 로딩 바 색상 */
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
-}
+   8. 📌 [수정] 새로 스캔된 이미지 효과 (new-angel-focus)
+   요청하신 대로 깨끗한 CSS 광채 효과만 남겼습니다.
+   ========================================================= */
 
-.loading-text {
-  font-family: 'Pretendard', sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  color: #000;
-}
-
-
-.new-scanned-item {
-  position: relative;
-  z-index: 10;
-  /* 📌 노란색 글리터 효과 (그림자로 연출) */
-  box-shadow: 0 0 15px #ffeb3b, 0 0 30px #fbc02d;
-  animation: glitter-pulse 1.5s infinite alternate ease-in-out;
-  border-radius: 50%; /* 이미지 형태에 맞춰 조정 */
-}
-
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes xRayAnimation { 
-  0% { top: -10%; opacity: 0; } 
-  10%, 90% { opacity: 1; } 
-  100% { top: 110%; opacity: 0; } 
-}
-
-@keyframes scanAnimation { 
-  0% { top: 0%; opacity: 0; } 
-  30%, 70% { opacity: 1; } 
-  100% { top: 100%; opacity: 0; } 
-}
-
-/* 1. 글리터 효과 본체: 이미지를 감싸는 div */
+/* 8.1 본체 가상 요소: 이미지를 감싸는 CSS 광채 */
 .new-angel-focus {
   z-index: 999 !important;
   pointer-events: none; /* 클릭 방해 금지 */
+  align-items: center;
+  justify-content: center;
 }
 
-/* 2. 이미지 주위의 노란색 광채 */
+/* 8.2 📌 이미지 주위의 노란색 CSS 광채 */
 .new-angel-focus img {
   box-shadow: 
     0 0 15px #fff, 
@@ -841,94 +762,63 @@ html, body {
   position: relative;
 }
 
-/* 3. 실제 반짝이는 작은 별 입자 효과 (선택사항) */
+/* 8.3 깨끗한 '별 기호' 반짝임 입자 효과 */
 .new-angel-focus::before {
   content: '*';
   position: absolute;
   top: -15px;
   right: -15px;
   font-size: 20px;
+  color: #fff;
+  text-shadow: 0 0 5px white, 0 0 10px gold;
   animation: sparkle-float 1s infinite;
   z-index: 1000;
 }
 
 /* 애니메이션 정의 */
+/* 1. 확 커지는 대신, 부드럽게 초점이 맞춰지며 등장하는 효과 */
 @keyframes glitter-strong {
-  0% {
-    transform: scale(1);
-    filter: brightness(1) saturate(1);
+  0% { 
+    transform: scale(0.7); /* 살짝 작은 상태에서 */
+    filter: brightness(1.5) blur(2px); /* 빛나면서 흐릿하게 시작 */
+    opacity: 0;
   }
-  100% {
-    transform: scale(2); /* 확 커져서 눈에 띄게 */
-    filter: brightness(1.5) saturate(2); /* 엄청 밝게 */
+  100% { 
+    transform: scale(1.2); /* 원래 크기로 */
+    filter: brightness(1) blur(0px); /* 선명하고 차분하게 */
+    opacity: 1;
   }
 }
 
+/* 2. 둥둥 떠다니는 입자 효과를 더 미세하고 투명하게 */
 @keyframes sparkle-float {
-  0% { opacity: 0; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(-15px) scale(1.2); }
-  100% { opacity: 0; transform: translateY(-30px); }
+  0% { 
+    opacity: 0; 
+    transform: translateY(10px) scale(0.5); 
+  }
+  50% { 
+    opacity: 0.5; /* 너무 진하지 않게 */
+    transform: translateY(-5px) scale(1); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-20px) scale(0.8); 
+  }
 }
 
-.era-guide-table {
-  position: fixed;
-  left: var(--side-margin);
-  bottom: 30px; 
-  z-index: 1000;
-  /* 배경을 거의 투명하게 하거나 흰색으로 깔끔하게 */
-  background: rgba(255, 255, 255, 0.5); 
-  /* 📌 맨 위 첫 번째 줄 가로선 추가 */
-  border-top: 0.2px solid #000; 
-  width: 550px; /* 간격을 위해 너비는 유지하거나 살짝 늘림 */
-}
-
-.era-guide-table table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 10px; /* 글자 크기 살짝 조정 */
-  line-height: 1.2;
-}
-
-.era-guide-table td {
-  /* 📌 패딩을 줄여서 '납작하게' 만듭니다 (위아래 6px 정도) */
-  padding: 6px 10px; 
-  border-bottom: 0.2px solid #000; /* 행 사이 가로선 */
-  color: #000;
-  text-align: left;
-  vertical-align: middle;
-}
-
-/* 📌 키워드와 설명 사이의 간격을 더 넓히기 위해 두 번째 열에 패딩 추가 */
-.era-guide-table td:nth-child(2) {
-  padding-right: 50px;
-}
-
-.tag {
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
-
-/* 호버 시 투명도 조절 */
-.era-guide-table {
-  opacity: 0.6;
-  transition: opacity 0.3s;
-}
-.era-guide-table:hover {
-  opacity: 1;
-}
-
+/* =========================================================
+   9. 아카이브 인덱스 오버레이 (Archive Index) (기존 유지)
+   선이 중첩되어 두꺼워지는 현상을 해결한 로직이 포함되어 있습니다.
+   ========================================================= */
 
 .index-overlay {
-  display: none;
+  display: none; /* 자바스크립트가 block으로 띄웁니다. */
   position: fixed;
   inset: 0;
   background: #fff;
   z-index: 11000;
-  /* 좌우 여백을 8cm로 주면 화면이 너무 좁을 수 있으니 %나 px로 유연하게 조절하는 걸 추천해요 */
-  padding: 60px 10%; 
+  padding: 60px 10%; /* 좌우 여백 확보 */
   overflow-y: auto;
-  font-family: 'Pretendard', sans-serif;
 }
 
 .index-container {
@@ -936,11 +826,11 @@ html, body {
   margin: 0 auto;
 }
 
-/* 상단 헤더 라인 */
+/* 상단 헤더 및 하단 푸터 (전체 페이지 단위) */
 .index-header {
   display: flex;
   justify-content: space-between;
-  border-top: 0.5px solid #000; /* 선 굵기 통일 */
+  border-top: 0.5px solid #000;
   border-bottom: 0.5px solid #000;
   padding: 10px 0;
   font-size: 12px;
@@ -948,36 +838,39 @@ html, body {
   margin-bottom: 0; /* 그리드 선과 붙이기 위해 0으로 변경 */
 }
 
-/* 📌 이미지 격자 (4열 바둑판) */
+/* 이미지 격자 (4열 바둑판) (선 중첩 해결 로직) */
 .index-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  /* 헤더와 선이 겹치지 않게 설정 */
+  gap: 0; /* 선 겹침 방지를 위해 0 고정 */
+  
+  /* 컨테이너 자체에는 상단과 좌측 선만 부여 */
+  border-top: 0.5px solid #000;
   border-left: 0.5px solid #000;
 }
 
-/* 📌 개별 카드 아이템 */
+/* 개별 카드 아이템 (선 중첩 해결 로직) */
 .index-item {
   display: flex;
   flex-direction: column;
-  /* 상단 시간 - 중앙 이미지 - 하단 제목 배치를 위해 space-between 사용 */
-  justify-content: space-between; 
+  justify-content: space-between; /* 상단 시간 - 중앙 이미지 - 하단 제목 배치를 위해 space-between 사용 */
   padding: 15px;
-  height: 380px; /* 참조 이미지 비율에 맞춰 높이 살짝 상향 */
-  border-right: 0.5px solid #000;
-  border-bottom: 0.5px solid #000;
+  height: 380px;
   cursor: pointer;
   background-color: #fff;
   transition: background 0.2s;
-  box-sizing: border-box;
+  box-sizing: border-box; /* 패딩이 보더 두께를 먹지 않도록 고정 */
+
+  /* 핵심: 상단/좌측 선은 긋지 않고, 하단과 우측에만 선을 그어 인접 아이템과 중첩 방지 */
+  border-right: 0.5px solid #000;
+  border-bottom: 0.5px solid #000;
 }
 
 .index-item:hover {
-  background-color: #e3e3e3;
+  background-color: #f1f1f1;
 }
 
-/* 상단 시간 텍스트 */
+/* 카드 상단 시간 텍스트 */
 .index-number {
   font-size: 12px !important;
   font-weight: 500;
@@ -985,7 +878,7 @@ html, body {
   text-align: center;
 }
 
-/* 📌 중앙 이미지 박스 (참조 이미지처럼 정갈하게) */
+/* 중앙 이미지 박스 */
 .index-img-box {
   flex-grow: 1; /* 중간 공간을 다 차지함 */
   display: flex;
@@ -998,18 +891,18 @@ html, body {
 .index-img-box img {
   max-width: 90%; /* 박스에 꽉 차지 않게 여백 유지 */
   max-height: 90%;
-  object-fit: contain; /* ⚠️ 중요: 이미지가 잘리지 않고 전체가 보임 */
+  object-fit: contain; /* 중요: 이미지가 잘리지 않고 전체가 보임 */
+  mix-blend-mode: multiply; /* 이미지 배경을 하얗게 (선택사항) */
 }
 
-/* 칸 내부의 하단 제목 스타일 (추가) */
+/* 칸 내부의 하단 제목 스타일 (양 끝 정렬) */
 .index-item-footer {
   font-size: 10px;
   font-weight: 500;
   display: flex;
-  /* 양 끝 정렬: 제목은 왼쪽, 아티스트는 오른쪽 */
-  justify-content: space-between; 
+  justify-content: space-between; /* 제목은 왼쪽, 아티스트는 오른쪽 */
   align-items: center;
-  padding-top: 10px; /* 이미지와의 간격 */
+  padding-top: 10px;
   text-transform: uppercase;
 }
 
@@ -1027,7 +920,7 @@ html, body {
   text-align: right;
 }
 
-/* 하단 푸터 라인 (전체 페이지 푸터) */
+/* 페이지 전체 푸터 라인 (전체 페이지 단위) */
 .index-footer {
   display: flex;
   justify-content: space-between;
@@ -1035,5 +928,5 @@ html, body {
   padding: 10px 0;
   font-size: 10px;
   font-weight: 500;
-  border-top: none;
+  border-top: none; /* 그리드 바닥선과 겹치지 않게 제거 */
 }

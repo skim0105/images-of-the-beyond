@@ -13,16 +13,9 @@
   <div class="sentence">THE FOLLOWING METADATA COMPONENTS ARE ESTABLISHED TO TRACK FORMAL TRANSFORMATIONS AND THE CONCEPTUAL TRANSITIONS OF MEANING</div>
   
   <nav class="top-nav">
-    <div class="nav-item" id="aboutBtn">ABOUT</div>
     <div class="nav-item" id="uploadBtn">UPLOAD</div>
     <div class="nav-item" id="indexOpenBtn">INDEX</div>
   </nav>
-
-  <aside id="infoPanel" class="side-panel">
-    <div id="infoContent">
-      <div class="hover-guide">HOVER OVER OBJECTS</div>
-    </div>
-  </aside>
 
   <div class="controls">
     <button id="zoomIn">+</button>
@@ -506,43 +499,6 @@
     </div>
   </div>
 
-  <div class="era-guide-table">
-  <table>
-    <tbody>
-      <tr>
-        <td style="width: 28%;"><span class="tag">ANCIENT</span></td>
-        <td style="width: 20%;">초월적</td>
-        <td>비인간적 비례, 기하학적 형상, 압도적 크기, 하이브리드</td>
-      </tr>
-      <tr>
-        <td><span class="tag">EARLY MEDIEVAL</span></td>
-        <td>상징적</td>
-        <td>평면성, 대칭적 구도, 정보의 아이콘화, 상징적 도구, 선명한 윤곽선</td>
-      </tr>
-      <tr>
-        <td><span class="tag">ROMANESQUE</span></td>
-        <td>단단한</td>
-        <td>묵직한 물성, 부동의 자세, 엄숙하고 투박한 표정, 수호적 부도성</td>
-      </tr>
-      <tr>
-        <td><span class="tag">GOTHIC MEDIEVAL</span></td>
-        <td>화려한</td>
-        <td>유려한 곡선, 빛의 찬란함, 빛의 투과와 효과, 수직적 상승</td>
-      </tr>
-      <tr>
-        <td><span class="tag">RENAISSANCE</span></td>
-        <td>이상적</td>
-        <td>해부학적으로 완벽한 인체, 친근한 미소, 정서적 교감</td>
-      </tr>
-      <tr>
-        <td><span class="tag">MODERN</span></td>
-        <td>해체적</td>
-        <td>심리적 투영, 형상의 해체</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-
   <div id="indexOverlay" class="index-overlay">
   <div class="index-container">
     <div class="index-header">
@@ -566,7 +522,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-storage-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore-compat.js"></script>
 
- <script>
+<script>
     document.addEventListener('DOMContentLoaded', () => {
       const firebaseConfig = {
         apiKey: "AIzaSyC-U2yBTcggU2XT6a8ufAR2rQrGCnUq8rw",
@@ -649,74 +605,169 @@
 
       window.onpointerup = () => { isDragging = false; };
 
-      let infoTimeout = null;
-
       if (detailClose) {
-        detailClose.onclick = (e) => { e.stopPropagation(); detailOverlay.style.display = 'none'; };
+        detailClose.onclick = (e) => {
+          e.stopPropagation();
+          hideDetailModal(); // 닫기 버튼 클릭 시 추적 중단 및 숨김
+        };
       }
 
       if (detailOverlay) {
-        detailOverlay.onclick = (e) => { if (e.target === detailOverlay) detailOverlay.style.display = 'none'; };
+        // 모달 배경 클릭 시에도 닫기 (추적 중엔 pointer-events: none이라 작동 안 함, 인덱스 등에서 사용)
+        detailOverlay.onclick = (e) => {
+          if (e.target === detailOverlay) hideDetailModal();
+        };
       }
 
-      function showInfo(item) {
-        if (infoTimeout) clearTimeout(infoTimeout);
-        const imgEl = item.querySelector('img');
-        const d = {
-          title: item.getAttribute('data-title') || "UNTITLED",
-          type: item.getAttribute('data-type') || "데이터가 없습니다.",
-          wing: item.getAttribute('data-wing') || "UNKNOWN WING",
-          artist: item.getAttribute('data-artist') || "UNKNOWN",
-          year: item.getAttribute('data-year') || "UNKNOWN",
-          place: item.getAttribute('data-place') || "UNKNOWN",
-          background: item.getAttribute('data-background') || "데이터가 없습니다.",
-          concept: item.getAttribute('data-concept') || "ERA DATA PENDING",
-          src: imgEl ? imgEl.src : ""
+      // 📌 [삭제] 기존 showInfo 및 hideInfoAfterDelay 함수 삭제됨.
+
+      // ---------------------------------------------------------
+      // 📌 [핵심 추가/수정] 3초 추적 전용 변수 및 함수
+      // ---------------------------------------------------------
+      let hoverTimer = null; // 3초 타이머용
+      let activeAngel = null; // 현재 추적 중인 천사 이미지 (.orbit-item)
+
+      // 모달을 숨기고 추적을 초기화하는 함수
+      function hideDetailModal() {
+        clearTimeout(hoverTimer);
+        if (detailOverlay) {
+          detailOverlay.style.display = 'none';
+          detailOverlay.classList.remove('tracking-mode'); // CSS 애니메이션용 클래스 제거
+        }
+        activeAngel = null; // 추적 대상 초기화
+      }
+
+      // 📌 [완벽 수정] 화면 경계를 감지하여 모달 위치 유동적 업데이트
+      function updateModalPosition() {
+        if (!activeAngel || !detailOverlay) return;
+
+        const modalContainer = detailOverlay.querySelector('.detail-container');
+        if (!modalContainer) return;
+
+        // 1. 천사 이미지(.orbit-item)의 현재 화면 좌표(getBoundingClientRect)를 가져옵니다.
+        const angelRect = activeAngel.getBoundingClientRect();
+        
+        // 2. 모달 컨테이너의 현재 크기(너비, 높이)를 가져옵니다. (렌더링 된 후여야 함)
+        const modalWidth = modalContainer.offsetWidth || 320; // 기본값 320px
+        const modalHeight = modalContainer.offsetHeight || 400; // 대략적인 기본값
+
+        // 3. 현재 브라우저 화면(Viewport)의 크기를 가져옵니다.
+        const viewWidth = window.innerWidth;
+        const viewHeight = window.innerHeight;
+
+        // ---------------------------------------------------------
+        // 📌 [핵심 로직] 경계 감지 및 위치 계산
+        // ---------------------------------------------------------
+
+        // 기본 위치: 이미지의 우측 상단 코너
+        let modalX = angelRect.right + 20; // 우측으로 20px 띄움
+        let modalY = angelRect.top; // 이미지의 탑 라인과 맞춤
+
+        // ✅ [위쪽 경계 감지] 모달이 화면 위를 벗어나는가?
+        const safeMargin = 20; // 화면 끝과의 최소 여백
+
+        // 만약 이미지 탑 위치에서 모달 높이의 절반을 뺀 값이 safeMargin보다 작다면 (위로 잘림)
+        if (angelRect.top - (modalHeight / 2) < safeMargin) {
+          // 💡 [해결] 모달을 화면 상단 safeMargin 위치에 고정시킵니다.
+          modalY = safeMargin;
+          // 기존 중앙 정렬 보정(translateY(-50%))을 CSS에서 제거해야 합니다. (밑에서 처리)
+        } 
+        // ✅ [아래쪽 경계 감지] (이미지가 아주 아래에 있을 때)
+        else if (angelRect.bottom + (modalHeight / 2) > viewHeight - safeMargin) {
+          // 💡 [해결] 모달을 화면 하단 safeMargin 위치에 고정시키고 위로 뻗게 함
+          modalY = viewHeight - modalHeight - safeMargin;
+        }
+        // [그 외 정상적인 경우] 중앙 정렬 보정 (이미지 세로 중앙과 모달 세로 중앙을 맞춤)
+        else {
+          modalY = angelRect.top + (angelRect.height / 2) - (modalHeight / 2);
+        }
+
+        // ✅ [오른쪽 경계 감지] 모달이 화면 오른쪽을 벗어나는가?
+        if (modalX + modalWidth > viewWidth - safeMargin) {
+          // 💡 [해결] 모달을 이미지의 좌측으로 이동시킵니다.
+          modalX = angelRect.left - modalWidth - 20;
+        }
+
+        // 4. 📌 [최종 위치 적용] fixed 좌표 사용
+        modalContainer.style.position = 'fixed';
+        modalContainer.style.left = `${modalX}px`;
+        modalContainer.style.top = `${modalY}px`;
+        
+        // 💡 [중요] CSS에서 설정한 translate(-50%)이나 margin을 여기서 초기화하여
+        // 계산된 modalY 값이 정확히 적용되도록 합니다.
+        modalContainer.style.transform = 'none'; // 자바스크립트가 계산한 Y값이 캔버스의 탑
+        modalContainer.style.margin = '0'; 
+      }
+
+      // 📌 [핵심 수정] bindEvents 함수: hover 시 3초 추적 모달 실행
+      function bindEvents(item) {
+        // [削除] 기존 onclick 로직 삭제 (hover 로직과 통합)
+
+        // 📌 [mouseenter] 마우스를 이미지에 갖다 대면
+        item.onmouseenter = () => {
+          // 1. 기존 타이머나 추적 대상이 있다면 즉시 초기화 (중복 방지)
+          hideDetailModal();
+
+          // 2. 이미지에 저장된 데이터를 싹 긁어옵니다. (동일)
+          const imgEl = item.querySelector('img');
+          const d = {
+            title: item.getAttribute('data-title') || "UNTITLED",
+            artist: item.getAttribute('data-artist') || "UNKNOWN",
+            year: item.getAttribute('data-year') || "UNKNOWN",
+            place: item.getAttribute('data-place') || "UNKNOWN",
+            type: item.getAttribute('data-type') || "데이터가 없습니다.",
+            background: item.getAttribute('data-background') || "데이터가 없습니다.",
+            wing: item.getAttribute('data-wing') || "",
+            src: imgEl ? imgEl.src : ""
+          };
+
+          // 3. 상세 모달(detailOverlay)의 각 요소에 데이터를 넣어줍니다. (동일)
+          document.getElementById('detailImg').src = d.src;
+          document.getElementById('detailTitle').innerText = d.title.toUpperCase();
+          document.getElementById('detailArtist').innerText = d.artist;
+          document.getElementById('detailYear').innerText = d.year;
+          document.getElementById('detailPlace').innerText = d.place;
+          document.getElementById('detailType').innerText = d.type;
+          document.getElementById('detailContext').innerText = d.background;
+          if (document.getElementById('detailWing')) document.getElementById('detailWing').innerText = d.wing;
+
+          // 4. 모달을 화면에 띄웁니다 (flex).
+          detailOverlay.style.display = 'flex';
+          detailOverlay.classList.add('tracking-mode'); // CSS 등장 애니메이션용 클래스 추가
+          
+          // 5. [보안] 기존 정보 패널(infoPanel)은 아예 안 뜨게! (유지)
+          if (infoPanel) infoPanel.classList.remove('active');
+
+          // 6. 📌 [추적 시작] 현재 hover된 이미지를 activeAngel로 설정
+          activeAngel = item;
+          // 모달 위치를 이미지 옆으로 즉시 이동 (여기서 경계 감지 로직 실행)
+          updateModalPosition();
+
+          // 7. 📌 [3초 타이머 시작]
+          hoverTimer = setTimeout(() => {
+            // 3초가 지나면 모달을 숨기고 추적을 멈춥니다.
+            hideDetailModal();
+          }, 3000); 
         };
 
-        infoPanel.innerHTML = `
-          <span class="index-num">DATA COMPONENT</span>
-          <h4 class="popup-title">${d.title.toUpperCase()}</h4>
-          <p class="popup-concept">${d.concept}</p>
-          <div class="popup-divider"></div>
-          <div class="detail-item"><span class="detail-label">Type</span><span class="detail-value">${d.type}</span></div>
-          <div class="detail-item"><span class="detail-label">Wing</span><span class="detail-value">${d.wing}</span></div>
-          <div class="detail-item"><span class="detail-label">Year</span><span class="detail-value">${d.year}</span></div>
-          <div class="detail-item"><span class="detail-label">Place</span><span class="detail-value highlight-value">${d.place}</span></div>
-          <button class="view-detail-btn" id="viewDetailBtn">VIEW DETAIL</button>
-        `;
+        // 📌 [mousemove] 이미지 위에서 마우스가 움직일 때 (궤도 운동 추적)
+        // 궤도 이미지가 계속 움직이므로 mousemove 이벤트가 계속 발생하며 위치를 업데이트합니다.
+        item.onmousemove = () => {
+          if (activeAngel) {
+            updateModalPosition(); // 움직일 때마다 경계 감지 로직 실행
+          }
+        };
 
-        infoPanel.classList.add('active');
-        const btn = document.getElementById('viewDetailBtn');
-        if (btn) {
-          btn.onclick = (e) => {
-            e.stopPropagation();
-            if (infoTimeout) clearTimeout(infoTimeout);
-            document.getElementById('detailImg').src = d.src;
-            document.getElementById('detailTitle').innerText = d.title.toUpperCase();
-            document.getElementById('detailArtist').innerText = d.artist;
-            document.getElementById('detailYear').innerText = d.year;
-            document.getElementById('detailPlace').innerText = d.place;
-            document.getElementById('detailType').innerText = d.type;
-            document.getElementById('detailContext').innerText = d.background;
-            if (document.getElementById('detailWing')) document.getElementById('detailWing').innerText = d.wing;
-            detailOverlay.style.display = 'flex';
-            infoPanel.classList.remove('active');
-          };
-        }
-        infoPanel.onmouseenter = () => { if (infoTimeout) clearTimeout(infoTimeout); };
-        infoPanel.onmouseleave = () => hideInfoAfterDelay();
+        // 📌 [mouseleave] 마우스가 이미지에서 벗어났을 때 (선택사항)
+        item.onmouseleave = () => {
+          // 선아 님 요청은 "3초 창이 뜰 수 있게" 이므로, mouseleave 시에는 닫지 않습니다.
+          // 대신 3초 타이머가 알아서 닫습니다. (마우스를 떼도 3초 동안 계속 뜸)
+          
+          // 만약 "마우스를 떼는 순간 닫고 싶다면" hideDetailModal(); 주석을 해제하세요.
+          // hideDetailModal();
+        };
       }
-
-      function hideInfoAfterDelay() {
-        const isDetailOpen = window.getComputedStyle(detailOverlay).display !== 'none';
-        if (!isDetailOpen) { infoTimeout = setTimeout(() => { infoPanel.classList.remove('active'); }, 2500); }
-      }
-
-      function bindEvents(item) {
-        item.onmouseenter = () => showInfo(item);
-        item.onmouseleave = () => hideInfoAfterDelay();
-      }
+      // ---------------------------------------------------------
 
       document.querySelectorAll('.orbit-item').forEach(bindEvents);
 
@@ -910,21 +961,20 @@
             const item = document.createElement('div');
             item.className = 'index-item';
             
-            // 📌 [수정 부분] 참조 이미지 디자인을 위한 HTML 구조 변경
             item.innerHTML = `
               <div class="index-number">${timeLabel}</div>
               <div class="index-img-box">
                 <img src="${data.src}" alt="${meta.title}">
               </div>
               <div class="index-item-footer">
-                <!-- 왼쪽 정렬: 제목 -->
                 <span class="footer-title">${(meta.title || "UNTITLED").toUpperCase()}</span>
-                <!-- 오른쪽 정렬: 아티스트/별명 -->
                 <span class="footer-artist">${(meta.artist || "ANONYMOUS").toUpperCase()}</span>
               </div>
               `;
             
             item.onclick = () => {
+              // 인덱스에서 클릭 시엔 추적 모드가 아니므로 일반 중앙 배치가 필요합니다.
+              // 만약 인덱스 클릭 시에도 이 모달을 쓴다면, CSS에서 중앙 배치 스타일을 active 클래스 등으로 분리해야 합니다.
               document.getElementById('detailImg').src = data.src;
               document.getElementById('detailTitle').innerText = (meta.title || "UNTITLED").toUpperCase();
               document.getElementById('detailArtist').innerText = meta.artist || "UNKNOWN";
@@ -935,6 +985,16 @@
               if (document.getElementById('detailWing')) document.getElementById('detailWing').innerText = meta.wing || "";
               
               detailOverlay.style.display = 'flex';
+              // 인덱스 클릭 시엔 위치 업데이트 함수를 호출하지 않거나, 중앙 배치용 좌표를 줍니다.
+              // 일단 자바스크립트로 직접 위치를 주지 않도록 초기화 (CSS가 중앙 배치를 담당한다고 가정)
+              const modalContainer = detailOverlay.querySelector('.detail-container');
+              if (modalContainer) {
+                modalContainer.style.position = ''; 
+                modalContainer.style.left = '';
+                modalContainer.style.top = '';
+                modalContainer.style.transform = '';
+                modalContainer.style.margin = '0 auto';
+              }
             };
 
             indexGrid.appendChild(item);
@@ -949,5 +1009,6 @@
       loadSavedAngels();
     });
 </script>
+
 </body>
 </html>
